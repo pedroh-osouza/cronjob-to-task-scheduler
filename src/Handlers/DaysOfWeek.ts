@@ -5,6 +5,7 @@ export class DaysOfWeek
     static convert(cronSynstax: string)
     {   
         const daysOfWeek = cronSynstax.split(' ')[4];
+        let selectedDaysOfWeek: string[] = [];
 
         const daysOfWeekName: {
             [key: string]: string;
@@ -21,20 +22,18 @@ export class DaysOfWeek
 
         if(daysOfWeek == '*')
         {
-            return '/daily'
+            return ''
         }
 
         if(daysOfWeek.includes(','))
         {
             const list = daysOfWeek.split(',');
-            let days: string[] = [];
-
+            
             list.forEach((value) => {
-                days.push(daysOfWeekName[value]);
+                selectedDaysOfWeek.push(daysOfWeekName[value]);
             });
 
-            let schedule = 'daily /d ';
-            schedule += days.join(' ');
+            return selectedDaysOfWeek.join(' ');
         }
 
         if(daysOfWeek.includes('-'))
@@ -45,16 +44,13 @@ export class DaysOfWeek
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
-
-            let days: string[] = [];
         
             for(let i = firstNumber; i <= secondNumber; i++)
             {
-                days.push(daysOfWeekName[i]);
+                selectedDaysOfWeek.push(daysOfWeekName[i]);
             }
             
-            let schedule = 'daily /d ';
-            schedule += days.join(' ');
+            return selectedDaysOfWeek.join(' ');
         }
 
         if(daysOfWeek.includes('/'))

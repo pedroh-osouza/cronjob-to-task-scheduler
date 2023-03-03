@@ -11,11 +11,6 @@ export class Minutes
             return '/minute /mo 1'
         }
 
-        if(this.isValidMinute(minutes))
-        {
-            
-        }
-
         if(minutes.includes(','))
         {
             let list = minutes.split(',')

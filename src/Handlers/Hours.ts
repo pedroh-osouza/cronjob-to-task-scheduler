@@ -5,6 +5,7 @@ export class Hours
     static convert(cronSynstax: string)
     {
         const hours = cronSynstax.split(' ')[1];
+        let selectedHours: string[] = [];
 
         if(hours == '*')
         {
@@ -14,14 +15,12 @@ export class Hours
         if(hours.includes(','))
         {
             const list = hours.split(',');
-            let days: string[] = [];
 
             list.forEach((value) => {
-                
+                selectedHours.push(value)
             });
 
-            let schedule = '';
-            schedule += days.join(' ');
+            return selectedHours.join(' ');
         }
 
         if(hours.includes('-'))
@@ -32,16 +31,13 @@ export class Hours
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
-
-            let days: string[] = [];
         
             for(let i = firstNumber; i <= secondNumber; i++)
             {
-                days.push();
+                selectedHours.push(i.toString());
             }
             
-            let schedule = '';
-            schedule += days.join(' ');
+            return selectedHours.join(' ');
         }
 
         if(hours.includes('/'))

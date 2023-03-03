@@ -5,46 +5,42 @@ export class Months
     static convert(cronSynstax: string)
     {
         const months = cronSynstax.split(' ')[3];
+        let selectedMonths: string[] = [];
 
         if(months == '*')
         {
-            return '/daily'
+            return ''
         }
 
         if(months.includes(','))
         {
             const list = months.split(',');
-            let days: string[] = [];
 
             list.forEach((value) => {
-                days.push();
+                selectedMonths.push(value);
             });
-
         }
 
         if(months.includes('-'))
         {
-            const match = months.match(/^([0-7])\-([0-7])$/);
+            const match = months.match(/^([1-12])\-([1-12])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-7')
+            if(!match) throw new InvalidRangeException('Invalid range, correct: 1-12')
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
-
-            let days: string[] = [];
         
             for(let i = firstNumber; i <= secondNumber; i++)
             {
-                days.push();
+                selectedMonths.push(i.toString());
             }
-            
         }
 
         if(months.includes('/'))
         {
-            const match = months.match(/^([*])\/([0-7])$/);
+            const match = months.match(/^([*])\/([1-12])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-7]');
+            if(!match) throw new InvalidRangeException('Invalid range, correct: */[1-12]');
 
             console.log('Rule not implemented');
         }
