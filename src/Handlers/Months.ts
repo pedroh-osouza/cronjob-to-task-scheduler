@@ -19,6 +19,8 @@ export class Months
             list.forEach((value) => {
                 selectedMonths.push(value);
             });
+
+            return selectedMonths.join(' ');
         }
 
         if(months.includes('-'))
@@ -34,6 +36,8 @@ export class Months
             {
                 selectedMonths.push(i.toString());
             }
+            
+            return selectedMonths.join(' ');
         }
 
         if(months.includes('/'))

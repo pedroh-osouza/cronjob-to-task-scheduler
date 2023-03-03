@@ -9,7 +9,7 @@ export class Hours
 
         if(hours == '*')
         {
-            return '/'
+            return ''
         }
 
         if(hours.includes(','))
@@ -25,9 +25,9 @@ export class Hours
 
         if(hours.includes('-'))
         {
-            const match = hours.match(/^([0-7])\-([0-7])$/);
+            const match = hours.match(/^([0-23])\-([0-23])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-7')
+            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-23')
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
@@ -42,9 +42,9 @@ export class Hours
 
         if(hours.includes('/'))
         {
-            const match = hours.match(/^([*])\/([0-7])$/);
+            const match = hours.match(/^([*])\/([0-23])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-7]');
+            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-23]');
 
             console.log('Rule not implemented');
         }

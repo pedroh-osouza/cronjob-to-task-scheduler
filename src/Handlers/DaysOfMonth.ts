@@ -5,46 +5,46 @@ export class DaysOfMonth
     convert(cronSynstax: string){
 
         const daysOfMonth = cronSynstax.split(' ')[2];
+        let selectedDaysOfMonth: string[] = [];
 
         if(daysOfMonth == '*')
         {
-            return '/daily'
+            return ''
         }
 
         if(daysOfMonth.includes(','))
         {
             const list = daysOfMonth.split(',');
-            let days: string[] = [];
 
             list.forEach((value) => {
-                days.push();
+                selectedDaysOfMonth.push(value);
             });
 
+            return selectedDaysOfMonth.join(' ');
         }
 
         if(daysOfMonth.includes('-'))
         {
-            const match = daysOfMonth.match(/^([0-7])\-([0-7])$/);
+            const match = daysOfMonth.match(/^([1-31])\-([1-31])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-7')
+            if(!match) throw new InvalidRangeException('Invalid range, correct: 1-31')
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
-
-            let days: string[] = [];
         
             for(let i = firstNumber; i <= secondNumber; i++)
             {
-                days.push();
+                selectedDaysOfMonth.push(i.toString());
             }
-            
+
+            return selectedDaysOfMonth.join(' ');
         }
 
         if(daysOfMonth.includes('/'))
         {
-            const match = daysOfMonth.match(/^([*])\/([0-7])$/);
+            const match = daysOfMonth.match(/^([*])\/([1-31])$/);
 
-            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-7]');
+            if(!match) throw new InvalidRangeException('Invalid range, correct: */[1-31]');
 
             console.log('Rule not implemented');
         }

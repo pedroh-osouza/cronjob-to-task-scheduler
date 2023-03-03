@@ -4,40 +4,52 @@ export class Minutes
 {
     static convert(cronSynstax: string): string | string[]
     {
-        const minutes = cronSynstax.split(' ')[0];
+        const minutes = cronSynstax.split(' ')[2];
+        let selectedMinutes: string[] = [];
 
         if(minutes == '*')
         {
-            return '/minute /mo 1'
+            return ''
         }
 
         if(minutes.includes(','))
         {
-            let list = minutes.split(',')
-            list.forEach(minute => {
-                
+            const list = minutes.split(',');
+
+            list.forEach((value) => {
+                selectedMinutes.push(value);
             });
-            return '';
+
+            return selectedMinutes.join(' ');
         }
 
         if(minutes.includes('-'))
         {
-            const regex = new RegExp('\d{2}-\d{2}')
-            if(!regex.test(minutes)) throw new InvalidRangeException('Minutes Range is Invalid')
-            return '';
+            const match = minutes.match(/^([0-59])\-([0-59])$/);
+
+            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-59')
+
+            const firstNumber = Number(match[1]);
+            const secondNumber = Number(match[2]);
+        
+            for(let i = firstNumber; i <= secondNumber; i++)
+            {
+                selectedMinutes.push(i.toString());
+            }
+
+            return selectedMinutes.join(' ');
         }
 
-        if(minutes.includes('//'))
+        if(minutes.includes('/'))
         {
-            return '';
+            const match = minutes.match(/^([*])\/([0-59])$/);
+
+            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-59]');
+
+            console.log('Rule not implemented');
         }
 
-        return '';
-    }
-
-    static isValidMinute(str: string): boolean {
-        const num = parseInt(str);
-        return !isNaN(num) && num >= 0 && num <= 59;
+        return [''];
     }
 }
 
