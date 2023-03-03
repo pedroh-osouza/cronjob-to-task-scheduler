@@ -2,7 +2,7 @@ import { InvalidRangeException } from "../Exceptions/InvalidRangeException";
 
 export class DaysOfMonth
 {
-    convert(cronSynstax: string){
+    static convert(cronSynstax: string){
 
         const daysOfMonth = cronSynstax.split(' ')[2];
         let selectedDaysOfMonth: string[] = [];

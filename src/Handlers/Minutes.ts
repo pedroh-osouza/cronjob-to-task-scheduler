@@ -4,7 +4,7 @@ export class Minutes
 {
     static convert(cronSynstax: string): string | string[]
     {
-        const minutes = cronSynstax.split(' ')[2];
+        const minutes = cronSynstax.split(' ')[0];
         let selectedMinutes: string[] = [];
 
         if(minutes == '*')
@@ -16,7 +16,7 @@ export class Minutes
         {
             const list = minutes.split(',');
 
-            list.forEach((value) => {
+            list.forEach(value => {
                 selectedMinutes.push(value);
             });
 
