@@ -7,9 +7,7 @@ export class DaysOfWeek
         const daysOfWeek = cronSynstax.split(' ')[4];
         let selectedDaysOfWeek: string[] = [];
 
-        const daysOfWeekName: {
-            [key: string]: string;
-        } = {
+        const daysOfWeekName: { [key: string]: string} = {
             '0': 'SUN',
             '1': 'MON',
             '2': 'TUE',
