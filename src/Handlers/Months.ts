@@ -25,7 +25,7 @@ export class Months
 
         if(months.includes('-'))
         {
-            const match = months.match(/^([1-12])\-([1-12])$/);
+            const match = months.match(/^(1[0-2]|[1-9])-(1[0-2]|[1-9])$/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 1-12')
 
