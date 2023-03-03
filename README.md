@@ -1,2 +1,10 @@
 # cronjob-to-task-scheduler
 Converte uma expressão CRON para um comando de agendamento de tarefa no windows
+
+ROBO START TODO DIA EM UMA ESPECIFICA
+
+ROBO STARTA TODO DIA EM UMA OU MAIS HORAS
+
+ROBO STARTA EM DIAS ESPECIFICOS COM UMA HORA ESPECIFICA
+
+ROBO STARTA EM DIAS ESPECIFICOS COM UMA OU MAIS HORAS
