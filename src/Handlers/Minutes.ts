@@ -1,4 +1,4 @@
-import { InvalidRangeException } from "../Exceptions/Minutes/InvalidRangeException";
+import { InvalidRangeException } from '../Exceptions/InvalidRangeException';
 
 export class Minutes
 {

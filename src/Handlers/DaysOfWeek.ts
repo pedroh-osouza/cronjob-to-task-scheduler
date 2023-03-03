@@ -1,9 +1,11 @@
-import { InvalidRangeDaysOfWeekException } from "../Exceptions/DaysOfWeek/InvalidRangeException";
+import { InvalidRangeException } from '../Exceptions/InvalidRangeException';
 
 export class DaysOfWeek
 {
     static convert(cronSynstax: string)
-    {
+    {   
+        const daysOfWeek = cronSynstax.split(' ')[4];
+
         const daysOfWeekName: {
             [key: string]: string;
         } = {
@@ -16,8 +18,6 @@ export class DaysOfWeek
             '6': 'SAT',
             '7': 'SUN'
         };
-
-        const daysOfWeek = cronSynstax.split(' ')[4];
 
         if(daysOfWeek == '*')
         {
@@ -41,7 +41,7 @@ export class DaysOfWeek
         {
             const match = daysOfWeek.match(/^([0-7])\-([0-7])$/);
 
-            if(!match) throw new InvalidRangeDaysOfWeekException('Invalid range, correct: 0-7')
+            if(!match) throw new InvalidRangeException('Invalid range, correct: 0-7')
 
             const firstNumber = Number(match[1]);
             const secondNumber = Number(match[2]);
@@ -61,7 +61,7 @@ export class DaysOfWeek
         {
             const match = daysOfWeek.match(/^([*])\/([0-7])$/);
 
-            if(!match) throw new InvalidRangeDaysOfWeekException('Invalid range, correct: */[0-7]');
+            if(!match) throw new InvalidRangeException('Invalid range, correct: */[0-7]');
 
             console.log('Rule not implemented');
         }

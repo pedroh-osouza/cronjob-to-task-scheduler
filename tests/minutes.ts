@@ -1,4 +1,4 @@
-import { Minutes }  from '../src/FacadeConvert/Minutes';
+import { Minutes }  from '../src/Handlers/Minutes';
 
 let minutes = Minutes.convert('* * * * *');
 
