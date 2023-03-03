@@ -20,7 +20,7 @@ export class Months
                 selectedMonths.push(value);
             });
 
-            return selectedMonths.join(' ');
+            return selectedMonths;
         }
 
         if(months.includes('-'))
@@ -37,7 +37,7 @@ export class Months
                 selectedMonths.push(i.toString());
             }
             
-            return selectedMonths.join(' ');
+            return selectedMonths;
         }
 
         if(months.includes('/'))

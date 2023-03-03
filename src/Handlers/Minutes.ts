@@ -20,12 +20,12 @@ export class Minutes
                 selectedMinutes.push(value);
             });
 
-            return selectedMinutes.join(' ');
+            return selectedMinutes;
         }
 
         if(minutes.includes('-'))
         {
-            const match = minutes.match(/^([0-59])\-([0-59])$/);
+            const match = minutes.match(/^([0-9]|[1-5][0-9])-([0-9]|[1-5][0-9])$/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 0-59')
 
@@ -37,7 +37,7 @@ export class Minutes
                 selectedMinutes.push(i.toString());
             }
 
-            return selectedMinutes.join(' ');
+            return selectedMinutes;
         }
 
         if(minutes.includes('/'))

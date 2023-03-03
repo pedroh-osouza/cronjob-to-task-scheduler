@@ -20,12 +20,12 @@ export class Hours
                 selectedHours.push(value)
             });
 
-            return selectedHours.join(' ');
+            return selectedHours;
         }
 
         if(hours.includes('-'))
         {
-            const match = hours.match(/^([0-23])\-([0-23])$/);
+            const match = hours.match(/^([01]?[0-9]|2[0-3])-([01]?[0-9]|2[0-3])$/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 0-23')
 
@@ -37,7 +37,7 @@ export class Hours
                 selectedHours.push(i.toString());
             }
             
-            return selectedHours.join(' ');
+            return selectedHours;
         }
 
         if(hours.includes('/'))

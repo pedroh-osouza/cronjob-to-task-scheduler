@@ -31,12 +31,12 @@ export class DaysOfWeek
                 selectedDaysOfWeek.push(daysOfWeekName[value]);
             });
 
-            return selectedDaysOfWeek.join(' ');
+            return selectedDaysOfWeek;
         }
 
         if(daysOfWeek.includes('-'))
         {
-            const match = daysOfWeek.match(/^([0-7])\-([0-7])$/);
+            const match = daysOfWeek.match(/([0-7])-([0-7])/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 0-7')
 
@@ -48,7 +48,7 @@ export class DaysOfWeek
                 selectedDaysOfWeek.push(daysOfWeekName[i]);
             }
             
-            return selectedDaysOfWeek.join(' ');
+            return selectedDaysOfWeek;
         }
 
         if(daysOfWeek.includes('/'))

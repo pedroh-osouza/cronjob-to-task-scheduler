@@ -20,12 +20,12 @@ export class DaysOfMonth
                 selectedDaysOfMonth.push(value);
             });
 
-            return selectedDaysOfMonth.join(' ');
+            return selectedDaysOfMonth;
         }
 
         if(daysOfMonth.includes('-'))
         {
-            const match = daysOfMonth.match(/^([1-31])\-([1-31])$/);
+            const match = daysOfMonth.match(/^([1-9]|[12][0-9]|3[01])\D+([1-9]|[12][0-9]|3[01])$/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 1-31')
 
@@ -37,7 +37,7 @@ export class DaysOfMonth
                 selectedDaysOfMonth.push(i.toString());
             }
 
-            return selectedDaysOfMonth.join(' ');
+            return selectedDaysOfMonth;
         }
 
         if(daysOfMonth.includes('/'))
