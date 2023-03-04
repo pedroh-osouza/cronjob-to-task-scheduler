@@ -1,4 +1,5 @@
 import { InvalidRangeException } from "../Exceptions/InvalidRangeException";
+import { InvalidValueException } from "../Exceptions/InvalidValueException";
 
 export class DaysOfMonth
 {
@@ -14,9 +15,12 @@ export class DaysOfMonth
 
         if(daysOfMonth.includes(','))
         {
+            const regex = /^(?:[1-9]|[1-2][0-9]|3[0-1])$/;
+
             const list = daysOfMonth.split(',');
 
             list.forEach((value) => {
+                if(!regex.test(value)) throw new InvalidValueException(`Value: ${value} is invalid, number required is 1-31`)
                 selectedDaysOfMonth.push(value);
             });
 

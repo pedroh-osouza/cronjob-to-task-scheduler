@@ -1,4 +1,5 @@
 import { InvalidRangeException } from '../Exceptions/InvalidRangeException';
+import { InvalidValueException } from '../Exceptions/InvalidValueException';
 
 export class Hours
 {
@@ -15,8 +16,10 @@ export class Hours
         if(hours.includes(','))
         {
             const list = hours.split(',');
+            const regex = /^(?:[0-9]|1[0-9]|2[0-3])$/;
 
             list.forEach((value) => {
+                if(!regex.test(value)) throw new InvalidValueException(`Value: ${value} is invalid, number required is 0-23`)
                 selectedHours.push(value)
             });
 

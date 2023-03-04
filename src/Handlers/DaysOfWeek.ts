@@ -1,4 +1,5 @@
 import { InvalidRangeException } from '../Exceptions/InvalidRangeException';
+import { InvalidValueException } from '../Exceptions/InvalidValueException';
 
 export class DaysOfWeek
 {
@@ -26,8 +27,10 @@ export class DaysOfWeek
         if(daysOfWeek.includes(','))
         {
             const list = daysOfWeek.split(',');
-            
+            const regex = /^(?:[0-7])$/;
+
             list.forEach((value) => {
+                if(!regex.test(value)) throw new InvalidValueException(`Value: ${value} is invalid, number required is 0-7`)
                 selectedDaysOfWeek.push(daysOfWeekName[value]);
             });
 
