@@ -14,12 +14,13 @@ export class FacadeCronToTaskScheduler
         const months = Months.convert(cronSyntax);
         const daysOfWeek = DaysOfWeek.convert(cronSyntax);
 
-        return {
+        let data = {
             minutes,
             hours,
             daysOfMonth,
             months,
             daysOfWeek
         };
+
     }
 }
