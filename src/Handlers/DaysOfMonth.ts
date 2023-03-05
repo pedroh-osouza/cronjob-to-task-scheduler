@@ -1,3 +1,4 @@
+import { InvalidCronSyntax } from "../Exceptions/InvalidCronSyntax";
 import { InvalidRangeException } from "../Exceptions/InvalidRangeException";
 import { InvalidValueException } from "../Exceptions/InvalidValueException";
 
@@ -49,5 +50,7 @@ export class DaysOfMonth
 
             console.log('Rule not implemented');
         }
+
+        throw new InvalidCronSyntax('Invalid Cron Syntax');
     }
 }
