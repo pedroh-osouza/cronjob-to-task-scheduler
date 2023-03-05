@@ -19,5 +19,17 @@ export class FacadeCronToTaskScheduler
         };
 
         return data;
+
+        
+    }
+
+    static isAll(data: any)
+    {
+        let keys: string[] = [];
+        for (const prop in data) {
+            if(data[prop] != '*') keys.push(prop)
+        }
+
+        return keys;
     }
 }
