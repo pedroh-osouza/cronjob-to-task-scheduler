@@ -8,10 +8,7 @@ export class Months
         const months = cronSynstax.split(' ')[3];
         let selectedMonths: string[] = [];
 
-        if(months == '*')
-        {
-            return ''
-        }
+        if((months == '*') || (/^(0?[1-9]|1[0-2])$/.test(months))) return months;
 
         if(months.includes(','))
         {

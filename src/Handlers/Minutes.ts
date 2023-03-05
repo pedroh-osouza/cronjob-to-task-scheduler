@@ -8,10 +8,7 @@ export class Minutes
         const minutes = cronSynstax.split(' ')[0];
         let selectedMinutes: string[] = [];
 
-        if(minutes == '*')
-        {
-            return ''
-        }
+        if((minutes == '*') || (/^([0-5][0-9])$/.test(minutes))) return minutes
 
         if(minutes.includes(','))
         {   
@@ -52,7 +49,7 @@ export class Minutes
             console.log('Rule not implemented');
         }
 
-        return [''];
+        return ['']
     }
 }
 

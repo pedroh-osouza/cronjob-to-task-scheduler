@@ -8,10 +8,7 @@ export class Hours
         const hours = cronSynstax.split(' ')[1];
         let selectedHours: string[] = [];
 
-        if(hours == '*')
-        {
-            return ''
-        }
+        if((hours == '*') || (/^(0?[0-9]|1[0-9]|2[0-3])$/.test(hours))) return hours;
 
         if(hours.includes(','))
         {

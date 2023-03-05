@@ -6,21 +6,18 @@ import { Months } from "./Handlers/Months";
 
 export class FacadeCronToTaskScheduler
 {
-    static convert(cronSyntax: string){
+    static convert(cronSyntax: string, taskName: string, taskCommand: string){
 
-        const minutes = Minutes.convert(cronSyntax);
-        const hours = Hours.convert(cronSyntax);
-        const daysOfMonth = DaysOfMonth.convert(cronSyntax);
-        const months = Months.convert(cronSyntax);
-        const daysOfWeek = DaysOfWeek.convert(cronSyntax);
-
-        let data = {
-            minutes,
-            hours,
-            daysOfMonth,
-            months,
-            daysOfWeek
+        let command = `schtasks /create /tn "UipathSchedules\\${taskName}" /tr "cmd /c ${taskCommand}"`;
+        
+        const data = {
+            minutes : Minutes.convert(cronSyntax),
+            hours : Hours.convert(cronSyntax),
+            daysOfMonth : DaysOfMonth.convert(cronSyntax),
+            months : Months.convert(cronSyntax),
+            daysOfWeek : DaysOfWeek.convert(cronSyntax)
         };
 
+        return data;
     }
 }

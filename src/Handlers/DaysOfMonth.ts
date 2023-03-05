@@ -8,10 +8,7 @@ export class DaysOfMonth
         const daysOfMonth = cronSynstax.split(' ')[2];
         let selectedDaysOfMonth: string[] = [];
 
-        if(daysOfMonth == '*')
-        {
-            return ''
-        }
+        if((daysOfMonth == '*') || (/^([1-9]|[12]\d|3[01])$/.test(daysOfMonth))) return daysOfMonth
 
         if(daysOfMonth.includes(','))
         {
