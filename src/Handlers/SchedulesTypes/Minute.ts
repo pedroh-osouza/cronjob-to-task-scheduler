@@ -1,8 +1,8 @@
-export class Daily
+export class Minute
 {
     static convert(minutes: string|string[], hours: string|string[])
     {
-        const baseDaily = '/sc daily /ST'
+        const baseDaily = '/sc minute /ST'
         
         if(Array.isArray(minutes) && Array.isArray(hours))
         {

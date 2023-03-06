@@ -1,4 +1,4 @@
-import { Daily } from "./Handlers/Daily";
+import { Daily } from "./Handlers/SchedulesTypes/Daily";
 import { DaysOfMonth } from "./Handlers/DaysOfMonth";
 import { DaysOfWeek } from "./Handlers/DaysOfWeek";
 import { Hours } from "./Handlers/Hours";
