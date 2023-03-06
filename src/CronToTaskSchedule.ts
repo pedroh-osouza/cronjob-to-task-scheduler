@@ -4,6 +4,8 @@ import { DaysOfWeek } from "./Handlers/DaysOfWeek";
 import { Hours } from "./Handlers/Hours";
 import { Minutes } from "./Handlers/Minutes";
 import { Months } from "./Handlers/Months";
+import { SelectScheduleType } from "./Handlers/SelectScheduleType";
+import { cronData } from "./types/cronData";
 
 export class CronToTaskSchedule
 {
@@ -11,27 +13,28 @@ export class CronToTaskSchedule
 
         let command = `schtasks /create /tn "UiPathSchedules\\${taskName}" /tr "cmd /c ${taskCommand}" `;
         
-        const minutes = Minutes.convert(cronSyntax);
-        const hours = Hours.convert(cronSyntax);
-        const daysOfMonth = DaysOfMonth.convert(cronSyntax);
-        const months = Months.convert(cronSyntax);
-        const daysOfWeek = DaysOfWeek.convert(cronSyntax);
+        SelectScheduleType.select({
+            minutes: Minutes.convert(cronSyntax),
+            hours: Hours.convert(cronSyntax),
+            month: Months.convert(cronSyntax),
+            dayOfWeek: DaysOfWeek.convert(cronSyntax),
+            dayOfMonth: DaysOfMonth.convert(cronSyntax)
+        });
         
-        const daily: Boolean = (minutes != '*' && hours != '*' && daysOfMonth == '*' && months == '*' && daysOfWeek == '*')
-        console.log(minutes, hours)
-        if(daily)
-        {
-            let sc = Daily.convert(minutes, hours);
+        
+        // if(daily)
+        // {
+        //     let sc = Daily.convert(minutes, hours);
 
-            if(!Array.isArray(sc)) return command += sc;
+        //     if(!Array.isArray(sc)) return command += sc;
 
-            let commands: string[] = []
-            sc.forEach(value => {
-                commands.push(command + ' ' + value)
-            });
+        //     let commands: string[] = []
+        //     sc.forEach(value => {
+        //         commands.push(command + ' ' + value)
+        //     });
 
-            return commands
-        }  
+        //     return commands
+        // }  
         
     }
 }
