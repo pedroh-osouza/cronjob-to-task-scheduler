@@ -4,7 +4,7 @@ export class DailySpecificDay
 {
     static handle(minutes: string|string[], hours: string|string[], dayOfWeek: string|string[])
     {
-        const baseDaily = '/sc weekly /ST'
+        const baseSchedule = '/sc weekly /ST'
 
         let startTimes = Extract.startTime(minutes, hours);
         let daysOfWeek = Extract.dayOfWeek(dayOfWeek);
@@ -12,11 +12,11 @@ export class DailySpecificDay
       
         if(!Array.isArray(startTimes))
         {
-            return `${baseDaily} ${startTimes} ${daysOfWeek}`
+            return `${baseSchedule} ${startTimes} ${daysOfWeek}`
         }
 
         startTimes.forEach((value)=>{
-            schedules.push(`${baseDaily} ${value} ${daysOfWeek}`)
+            schedules.push(`${baseSchedule} ${value} ${daysOfWeek}`)
         })
 
         return schedules;

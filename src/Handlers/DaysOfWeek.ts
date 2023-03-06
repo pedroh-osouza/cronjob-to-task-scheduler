@@ -17,7 +17,8 @@ export class DaysOfWeek
             '4': 'THUR',
             '5': 'FRI',
             '6': 'SAT',
-            '7': 'SUN'
+            '7': 'SUN',
+            '*': '*'
         };
 
         if((daysOfWeek == '*') || (/^(0?[0-7])$/.test(daysOfWeek))) return daysOfWeekName[daysOfWeek];
