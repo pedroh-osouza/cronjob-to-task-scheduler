@@ -53,4 +53,10 @@ export class DaysOfMonth
 
         throw new InvalidCronSyntax('Invalid Cron Syntax');
     }
+
+    static validate(cronPart: string): Boolean
+    {
+        if((/^([1-9]|[12]\d|3[01])$/.test(cronPart))) return true;
+        return false;
+    }
 }

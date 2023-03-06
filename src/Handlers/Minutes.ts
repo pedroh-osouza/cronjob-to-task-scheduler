@@ -9,7 +9,7 @@ export class Minutes
         const minutes = cronSynstax.split(' ')[0];
         let selectedMinutes: string[] = [];
 
-        if((minutes == '*') || (/^([0-5][0-9])$/.test(minutes))) return minutes
+        if((minutes == '*') || (/^(0?[0-9]|[1-5][0-9])$/.test(minutes))) return minutes
 
         if(minutes.includes(','))
         {   
@@ -26,7 +26,7 @@ export class Minutes
 
         if(minutes.includes('-'))
         {
-            const match = minutes.match(/^([0-9]|[1-5][0-9])-([0-9]|[1-5][0-9])$/);
+            const match = minutes.match(/^(0?[0-9]|[1-5][0-9])-(0?[0-9]|[1-5][0-9])$/);
 
             if(!match) throw new InvalidRangeException('Invalid range, correct: 0-59')
 
@@ -35,6 +35,10 @@ export class Minutes
         
             for(let i = firstNumber; i <= secondNumber; i++)
             {
+                if(i < 10) {
+                    selectedMinutes.push('0'+i.toString());
+                    continue;
+                }
                 selectedMinutes.push(i.toString());
             }
 
@@ -55,8 +59,7 @@ export class Minutes
 
     static validate(minutes: string): Boolean
     {
-        if(/^([0-5][0-9])$/.test(minutes)) return true;
+        if(/^(0?[0-9]|[1-5][0-9])$/.test(minutes)) return true;
         return false;
     }
 }
-

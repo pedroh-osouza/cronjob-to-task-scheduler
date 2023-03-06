@@ -63,4 +63,10 @@ export class DaysOfWeek
 
         throw new InvalidCronSyntax('Invalid Cron Syntax');
     }
+
+    static validate(cronPart: string): Boolean
+    {
+        if((/^(0?[0-7])$/.test(cronPart))) return true;
+        return false;
+    }
 }

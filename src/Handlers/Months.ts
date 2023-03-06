@@ -52,4 +52,10 @@ export class Months
 
         throw new InvalidCronSyntax('Invalid Cron Syntax');
     }
+
+    static validate(minutes: string): Boolean
+    {
+        if(/^(0?[1-9]|1[0-2])$/.test(minutes)) return true;
+        return false;
+    }
 }

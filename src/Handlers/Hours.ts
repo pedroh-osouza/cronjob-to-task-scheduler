@@ -52,4 +52,10 @@ export class Hours
 
         throw new InvalidCronSyntax('Invalid Cron Syntax');
     }
+
+    static validate(cronPart: string): Boolean
+    {
+        if((/^(0?[0-9]|1[0-9]|2[0-3])$/.test(cronPart))) return true;
+        return false;
+    }
 }
