@@ -1,4 +1,5 @@
 import { cronData } from "../types/cronData";
+import { Daily } from "./SchedulesTypes/Daily";
 
 export class SelectScheduleType
 {
@@ -20,6 +21,9 @@ export class SelectScheduleType
         /*Uma tarefa que executa em determinada(s) hora(s), independente do minuto, dia do mes, mes e dia da semana*/
         const specificHour: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
 
-
+        if(daily) return Daily.handle(minutes, hours);
+        if(dailySpecificDay) return;
+        if(specificMinutes) return;
+        if(specificHour) return;
     }
 }

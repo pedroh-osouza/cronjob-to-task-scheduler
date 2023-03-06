@@ -1,44 +1,20 @@
-import { Hours } from "../Hours";
-import { Minutes } from "../Minutes";
+import { Extract } from "./Extract";
 
 export class Daily
 {
-    static convert(minutes: string|string[], hours: string|string[])
+    static handle(minutes: string|string[], hours: string|string[])
     {
         const baseDaily = '/sc daily /ST'
-        const startTimes: String[] = []
         
-        if(Array.isArray(minutes) && Array.isArray(hours))
-        {
-            hours.forEach((hour) => {
-                minutes.forEach((minute) => {
-                    console.log(hour, minute)
-                    startTimes.push(`${baseDaily} ${hour}:${minute}`);
-                });
-            });
+        let startTimes = Extract.startTime(minutes, hours);
+        let sc: string[] = [];
 
-            return startTimes;   
-        }
+        if(!Array.isArray(startTimes)) return `${baseDaily} ${startTimes}`;
 
-        if(Array.isArray(minutes) && Hours.validate(hours.toString()))
-        {
-            minutes.forEach((value)=>{
-                startTimes.push(`${baseDaily} ${hours.toString()}:${value}`)
-            })
+        startTimes.forEach((value)=>{
+            sc.push(`${baseDaily} ${value}`)
+        })
 
-            return startTimes;
-        }
-
-        if(Minutes.validate(minutes.toString()) && Array.isArray(hours))
-        {
-            hours.forEach((value)=>{
-                startTimes.push(`${baseDaily} ${value}:${minutes.toString()}`)
-            })
-
-            return startTimes;
-        }
-
-        if(Minutes.validate(minutes.toString()) && Hours.validate(hours.toString())) return `${baseDaily} ${hours}:${minutes}`
-        
+        return sc;
     }
 }

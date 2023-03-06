@@ -11,9 +11,9 @@ export class CronToTaskSchedule
 {
     static convert(cronSyntax: string, taskName: string, taskCommand: string){
 
-        let command = `schtasks /create /tn "UiPathSchedules\\${taskName}" /tr "cmd /c ${taskCommand}" `;
+        let command = `schtasks /create /tn "UiPathSchedules\\${taskName}" /tr "cmd /c ${taskCommand}"`;
         
-        SelectScheduleType.select({
+        let schedule = SelectScheduleType.select({
             minutes: Minutes.convert(cronSyntax),
             hours: Hours.convert(cronSyntax),
             month: Months.convert(cronSyntax),
@@ -21,20 +21,14 @@ export class CronToTaskSchedule
             dayOfMonth: DaysOfMonth.convert(cronSyntax)
         });
         
-        
-        // if(daily)
-        // {
-        //     let sc = Daily.convert(minutes, hours);
+        if(!Array.isArray(schedule)) return command + ' ' + schedule
 
-        //     if(!Array.isArray(sc)) return command += sc;
+        let commands: string[] = [];
 
-        //     let commands: string[] = []
-        //     sc.forEach(value => {
-        //         commands.push(command + ' ' + value)
-        //     });
+        schedule.forEach((value)=>{
+            commands.push(`${command} ${value}`)
+        })
 
-        //     return commands
-        // }  
-        
+        return commands;
     }
 }
