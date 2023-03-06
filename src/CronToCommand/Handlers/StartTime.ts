@@ -1,6 +1,5 @@
-import { cronData } from "../types/cronData";
-import { Minutes } from "./Minutes";
 
+import { cronData } from "../types/cronData";
 export class StartTime
 {
     static convert(data: cronData)
@@ -20,11 +19,6 @@ export class StartTime
         if(minutes != '*' && hours == '*')
         {
             
-        }
-
-        if(Minutes.validate(minutes) && hours != '*')
-        {
-            return `${hours}:${minutes}`
-        }        
+        }      
     }
 }

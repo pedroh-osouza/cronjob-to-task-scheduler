@@ -1,8 +1,8 @@
-import { DaysOfMonth } from "../Handlers/DaysOfMonth";
-import { DaysOfWeek } from "../Handlers/DaysOfWeek";
-import { Hours } from "../Handlers/Hours";
-import { Minutes } from "../Handlers/Minutes";
-import { Months } from "../Handlers/Months";
+import { DaysOfMonth } from "./Handlers/DaysOfMonth";
+import { DaysOfWeek } from "./Handlers/DaysOfWeek";
+import { Hours } from "./Handlers/Hours";
+import { Minutes } from "./Handlers/Minutes";
+import { Months } from "./Handlers/Months";
 
 export class FacadeCronToTaskScheduler
 {
