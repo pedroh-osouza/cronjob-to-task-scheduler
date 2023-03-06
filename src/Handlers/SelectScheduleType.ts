@@ -1,5 +1,6 @@
 import { cronData } from "../types/cronData";
 import { Daily } from "./SchedulesTypes/Daily";
+import { DailySpecificDay } from "./SchedulesTypes/DailySpecificDay";
 
 export class SelectScheduleType
 {
@@ -22,7 +23,7 @@ export class SelectScheduleType
         const specificHour: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
 
         if(daily) return Daily.handle(minutes, hours);
-        if(dailySpecificDay) return;
+        if(dailySpecificDay) return DailySpecificDay.handle(minutes, hours, dayOfWeek);
         if(specificMinutes) return;
         if(specificHour) return;
     }

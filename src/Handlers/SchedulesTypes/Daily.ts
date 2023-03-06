@@ -7,14 +7,14 @@ export class Daily
         const baseDaily = '/sc daily /ST'
         
         let startTimes = Extract.startTime(minutes, hours);
-        let sc: string[] = [];
+        let schedules: string[] = [];
 
         if(!Array.isArray(startTimes)) return `${baseDaily} ${startTimes}`;
 
         startTimes.forEach((value)=>{
-            sc.push(`${baseDaily} ${value}`)
+            schedules.push(`${baseDaily} ${value}`)
         })
 
-        return sc;
+        return schedules;
     }
 }

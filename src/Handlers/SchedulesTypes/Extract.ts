@@ -38,5 +38,23 @@ export class Extract
         }
 
         if(Minutes.validate(minutes.toString()) && Hours.validate(hours.toString())) return `${hours}:${minutes}`
+
+        throw new Error('Erro')
+    }
+
+    static dayOfWeek(dayOfWeek: string|string[])
+    {
+        let days:string = '/d';
+
+        if(!Array.isArray(dayOfWeek))
+        {
+            return `${days} ${dayOfWeek}`
+        }
+
+        dayOfWeek.forEach(value => {
+            days += ' ' + value
+        });
+
+        return days;
     }
 }

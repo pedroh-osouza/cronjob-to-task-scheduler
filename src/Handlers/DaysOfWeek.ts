@@ -20,7 +20,7 @@ export class DaysOfWeek
             '7': 'SUN'
         };
 
-        if((daysOfWeek == '*') || (/^(0?[0-7])$/.test(daysOfWeek))) return daysOfWeek;
+        if((daysOfWeek == '*') || (/^(0?[0-7])$/.test(daysOfWeek))) return daysOfWeekName[daysOfWeek];
 
         if(daysOfWeek.includes(','))
         {
