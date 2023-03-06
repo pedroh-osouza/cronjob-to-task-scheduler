@@ -4,7 +4,7 @@ import { Hours } from "./Handlers/Hours";
 import { Minutes } from "./Handlers/Minutes";
 import { Months } from "./Handlers/Months";
 
-export class FacadeCronToTaskScheduler
+export class CronToTaskSchedule
 {
     static convert(cronSyntax: string, taskName: string, taskCommand: string){
 
@@ -19,17 +19,5 @@ export class FacadeCronToTaskScheduler
         };
 
         return data;
-
-        
-    }
-
-    static isAll(data: any)
-    {
-        let keys: string[] = [];
-        for (const prop in data) {
-            if(data[prop] != '*') keys.push(prop)
-        }
-
-        return keys;
     }
 }
