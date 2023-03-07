@@ -14,9 +14,9 @@ export class CronToTaskSchedule
         let schedule = SelectScheduleType.select({
             minutes: Minutes.convert(cronSyntax),
             hours: Hours.convert(cronSyntax),
-            month: Months.convert(cronSyntax),
-            dayOfWeek: DaysOfWeek.convert(cronSyntax),
-            dayOfMonth: DaysOfMonth.convert(cronSyntax)
+            months: Months.convert(cronSyntax),
+            daysOfWeeks: DaysOfWeek.convert(cronSyntax),
+            daysOfMonths: DaysOfMonth.convert(cronSyntax)
         });
         
         if(!Array.isArray(schedule)) return command + ' ' + schedule

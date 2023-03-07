@@ -1,6 +1,11 @@
-export class SpecificHour
+export class Minute
 {
-    static handle(hour: string|string[])
+    static allUnchecked()
+    {
+        return '/sc minute /mo 1'
+    }
+
+    static hour(hour: string|string[])
     {
         const baseSchedule = '/sc minute /mo 1 /st'
 

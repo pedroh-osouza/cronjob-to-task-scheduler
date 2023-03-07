@@ -2,7 +2,7 @@ import { Extract } from "./Extract";
 
 export class Daily
 {
-    static handle(minutes: string|string[], hours: string|string[])
+    static minuteHour(minutes: string|string[], hours: string|string[])
     {
         const baseSchedule = '/sc daily /st'
         

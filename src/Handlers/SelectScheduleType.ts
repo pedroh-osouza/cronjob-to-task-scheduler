@@ -1,50 +1,67 @@
 import { cronData } from "../interfaces/cronData";
 import { Daily } from "./SchedulesTypes/Daily";
-import { DailySpecificDay } from "./SchedulesTypes/DailySpecificDay";
-import { SpecificHour } from "./SchedulesTypes/SpecificHour";
-import { SpecificMinute } from "./SchedulesTypes/SpecificMinute";
+import { Hourly } from "./SchedulesTypes/Hourly";
+import { Minute } from "./SchedulesTypes/Minute";
+import { Monthly } from "./SchedulesTypes/Monthly";
+import { Weekly } from "./SchedulesTypes/Weekly";
 
 export class SelectScheduleType
 {
     static select(data: cronData)
     {
-        const {minutes, hours, dayOfMonth, month, dayOfWeek} = data;
-        const allUnchecked: Boolean = (minutes == '*' && hours == '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
-        const minute: Boolean = (minutes != '*' && hours == '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
-        const hour: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
-        const minuteHour: Boolean = (minutes != '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek == '*')
-        const specificDayOfMonth: Boolean = (minutes == '*' && hours == '*' && dayOfMonth != '*' && month == '*' && dayOfWeek == '*')
-        const minuteDayOfMonth: Boolean = (minutes != '*' && hours == '*' && dayOfMonth != '*' && month == '*' && dayOfWeek == '*')
-        const hourDayOfMonth: Boolean = (minutes == '*' && hours != '*' && dayOfMonth != '*' && month == '*' && dayOfWeek == '*')
-        const minuteHourDayOfMonth: Boolean = (minutes != '*' && hours != '*' && dayOfMonth != '*' && month == '*' && dayOfWeek == '*')
-        const specificMonth: Boolean = (minutes == '*' && hours == '*' && dayOfMonth == '*' && month != '*' && dayOfWeek == '*')
-        const minuteMonth: Boolean = (minutes != '*' && hours == '*' && dayOfMonth == '*' && month != '*' && dayOfWeek == '*')
-        const hourMonth: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month != '*' && dayOfWeek == '*')
-        const minuteHourMonth: Boolean = (minutes != '*' && hours != '*' && dayOfMonth == '*' && month != '*' && dayOfWeek == '*')
-        const dayOfMonthMonth: Boolean = (minutes == '*' && hours == '*' && dayOfMonth != '*' && month != '*' && dayOfWeek == '*')
-        const minuteDayOfMonthMonth: Boolean = (minutes != '*' && hours == '*' && dayOfMonth != '*' && month != '*' && dayOfWeek == '*')
-        const hourDayOfMonthMonth: Boolean = (minutes == '*' && hours != '*' && dayOfMonth != '*' && month != '*' && dayOfWeek == '*')
-        const hourMinuteDayOfMonthMonth: Boolean = (minutes != '*' && hours != '*' && dayOfMonth != '*' && month != '*' && dayOfWeek == '*')
-        const specificDayOfWeek: Boolean = (minutes == '*' && hours == '*' && dayOfMonth == '*' && month == '*' && dayOfWeek != '*')
-        const minuteDayOfWeek: Boolean = (minutes != '*' && hours == '*' && dayOfMonth == '*' && month == '*' && dayOfWeek != '*')
-        const hourDayOfWeek: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek != '*')
-        const minuteHourDayOfWeek: Boolean = (minutes != '*' && hours != '*' && dayOfMonth == '*' && month == '*' && dayOfWeek != '*')
-        const dayOfMonthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && dayOfMonth != '*' && month == '*' && dayOfWeek != '*')
-        const minuteDayOfMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && dayOfMonth != '*' && month == '*' && dayOfWeek != '*')
-        const hourDayOfMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && dayOfMonth != '*' && month == '*' && dayOfWeek != '*')
-        const minuteHourDayOfMonthDayOfWeek : Boolean = (minutes != '*' && hours != '*' && dayOfMonth != '*' && month == '*' && dayOfWeek != '*')
-        const monthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && dayOfMonth == '*' && month != '*' && dayOfWeek != '*')
-        const minuteMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && dayOfMonth == '*' && month != '*' && dayOfWeek != '*')
-        const hourMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && dayOfMonth == '*' && month != '*' && dayOfWeek != '*')
-        const minuteHourMonthDayOfWeek: Boolean = (minutes != '*' && hours != '*' && dayOfMonth == '*' && month != '*' && dayOfWeek != '*')
-        const dayOfMonthMonthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && dayOfMonth != '*' && month != '*' && dayOfWeek != '*')
-        const minuteDayOfMonthMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && dayOfMonth != '*' && month != '*' && dayOfWeek != '*')
-        const hourDayOfMonthMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && dayOfMonth != '*' && month != '*' && dayOfWeek != '*')
-        const allFilled: Boolean = (minutes != '*' && hours != '*' && dayOfMonth != '*' && month != '*' && dayOfWeek != '*')
+        const {minutes, hours, daysOfMonths, months, daysOfWeeks} = data;
+        const allUnchecked: Boolean = (minutes == '*' && hours == '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks == '*')
+        const minute: Boolean = (minutes != '*' && hours == '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks == '*')
+        const hour: Boolean = (minutes == '*' && hours != '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks == '*')
+        const minuteHour: Boolean = (minutes != '*' && hours != '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks == '*')
+        const dayOfMonth: Boolean = (minutes == '*' && hours == '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks == '*')
+        const minuteDayOfMonth: Boolean = (minutes != '*' && hours == '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks == '*')
+        const hourDayOfMonth: Boolean = (minutes == '*' && hours != '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks == '*')
+        const minuteHourDayOfMonth: Boolean = (minutes != '*' && hours != '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks == '*')
+        const specificMonth: Boolean = (minutes == '*' && hours == '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks == '*')
+        const minuteMonth: Boolean = (minutes != '*' && hours == '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks == '*')
+        const hourMonth: Boolean = (minutes == '*' && hours != '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks == '*')
+        const minuteHourMonth: Boolean = (minutes != '*' && hours != '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks == '*')
+        const dayOfMonthMonth: Boolean = (minutes == '*' && hours == '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks == '*')
+        const minuteDayOfMonthMonth: Boolean = (minutes != '*' && hours == '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks == '*')
+        const hourDayOfMonthMonth: Boolean = (minutes == '*' && hours != '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks == '*')
+        const hourMinuteDayOfMonthMonth: Boolean = (minutes != '*' && hours != '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks == '*')
+        const specificDayOfWeek: Boolean = (minutes == '*' && hours == '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks != '*')
+        const minuteDayOfWeek: Boolean = (minutes != '*' && hours == '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks != '*')
+        const hourDayOfWeek: Boolean = (minutes == '*' && hours != '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks != '*')
+        const minuteHourDayOfWeek: Boolean = (minutes != '*' && hours != '*' && daysOfMonths == '*' && months == '*' && daysOfWeeks != '*')
+        const dayOfMonthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks != '*')
+        const minuteDayOfMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks != '*')
+        const hourDayOfMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks != '*')
+        const minuteHourDayOfMonthDayOfWeek : Boolean = (minutes != '*' && hours != '*' && daysOfMonths != '*' && months == '*' && daysOfWeeks != '*')
+        const monthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks != '*')
+        const minuteMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks != '*')
+        const hourMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks != '*')
+        const minuteHourMonthDayOfWeek: Boolean = (minutes != '*' && hours != '*' && daysOfMonths == '*' && months != '*' && daysOfWeeks != '*')
+        const dayOfMonthMonthDayOfWeek: Boolean = (minutes == '*' && hours == '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks != '*')
+        const minuteDayOfMonthMonthDayOfWeek: Boolean = (minutes != '*' && hours == '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks != '*')
+        const hourDayOfMonthMonthDayOfWeek: Boolean = (minutes == '*' && hours != '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks != '*')
+        const allFilled: Boolean = (minutes != '*' && hours != '*' && daysOfMonths != '*' && months != '*' && daysOfWeeks != '*')
         
-        if(minuteHour) return Daily.handle(minutes, hours);
-        if(minuteHourDayOfWeek) return DailySpecificDay.handle(minutes, hours, dayOfWeek);
-        if(minute) return SpecificMinute.handle(minutes);
-        if(hour) return SpecificHour.handle(hours);
+        if(allUnchecked) return Minute.allUnchecked();
+        if(minute) return Hourly.minute(minutes);
+        if(hour) return Minute.hour(hours);
+        if(minuteHour) return Daily.minuteHour(minutes, hours);
+        if(dayOfMonth) return Monthly.dayOfMonth(daysOfMonths);
+
+
+
+
+
+
+
+
+
+
+
+
+        if(minuteHourDayOfWeek) return Weekly.minuteHourDayOfWeek(minutes, hours, daysOfWeeks);
+        
+        
     }
 }

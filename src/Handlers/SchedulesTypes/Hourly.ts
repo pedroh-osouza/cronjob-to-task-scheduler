@@ -1,6 +1,6 @@
-export class SpecificMinute
+export class Hourly
 {
-    static handle(minutes: string|string[])
+    static minute(minutes: string|string[])
     {
         let baseSchedule = '/sc hourly /mo 1 /st'
         

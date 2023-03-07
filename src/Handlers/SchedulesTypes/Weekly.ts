@@ -1,12 +1,12 @@
 import { Extract } from "./Extract";
 
-export class DailySpecificDay
+export class Weekly
 {
-    static handle(minutes: string|string[], hours: string|string[], dayOfWeek: string|string[])
+    static minuteHourDayOfWeek(minute: string|string[], hour: string|string[], dayOfWeek: string|string[])
     {
         const baseSchedule = '/sc weekly /ST'
 
-        let startTimes = Extract.startTime(minutes, hours);
+        let startTimes = Extract.startTime(minute, hour);
         let daysOfWeek = Extract.dayOfWeek(dayOfWeek);
         let schedules: string[] = [];
       
