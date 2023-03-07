@@ -44,17 +44,15 @@ export class Extract
 
     static dayOfWeek(dayOfWeek: string|string[])
     {
-        let days:string = '/d';
+        let days:string = '/d ';
 
         if(!Array.isArray(dayOfWeek))
         {
-            return `${days} ${dayOfWeek}`
+            return `${days}${dayOfWeek}`
         }
 
-        dayOfWeek.forEach(value => {
-            days += ' ' + value
-        });
-
-        return days;
+        const daysOfWeeks = dayOfWeek.join(',') 
+        
+        return `${days}"${daysOfWeeks}"`;
     }
 }
