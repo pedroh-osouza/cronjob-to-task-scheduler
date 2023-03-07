@@ -1,4 +1,4 @@
-import { cronData } from "../types/cronData";
+import { cronData } from "../interfaces/cronData";
 import { Daily } from "./SchedulesTypes/Daily";
 import { DailySpecificDay } from "./SchedulesTypes/DailySpecificDay";
 import { SpecificHour } from "./SchedulesTypes/SpecificHour";
