@@ -1,6 +1,6 @@
 import { CronToXml } from "../src/CronToXml/FacadeCronToXml";
 
-CronToXml.convert('MyTask', '00 07 * * 1-5', 'echo "Teste"')
+CronToXml.convert('MyTask', '00,59 00,24 * * 1-5', 'echo "Teste"')
 
 // const objeto = {
 //     _declaration: {

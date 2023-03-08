@@ -1,3 +1,5 @@
+import { InvalidCronException } from "../Exceptions/InvalidCronException";
+
 export class CronValidator {
 
     private readonly ranges = [
@@ -8,44 +10,46 @@ export class CronValidator {
       [0, 7],   // day of week
     ];
     
-    isValid(cronExpression: string) : boolean
+    validate(cronExpression: string) : void
     {
-        return ((!this.validateLength(cronExpression)) && !this.validateParts(cronExpression)) 
+        this.validateLength(cronExpression);
+        this.validateParts(cronExpression);
     }
 
-    private validateLength(cronExpression: string): boolean 
+    private validateLength(cronExpression: string): void 
     {
-        return (cronExpression.split(' ').length == 5);
+        if(cronExpression.split(' ').length != 5) throw new InvalidCronException(cronExpression);
     }
 
-    private validateParts(cronExpression: string): boolean
-    {
-        let errors: string[] = [];
-        cronExpression.split(' ').forEach((value, key)=>{
+    private validateParts(cronExpression: string): void
+    { 
+        const fields = cronExpression.split(' ');
 
+        for(const index in fields)
+        {
+            let key = Number(index)
             let values: string[] = [];
 
-            if(value.includes(',')) values = value.split(',');
+            if(fields[key].includes(',')) values = fields[key].split(',');
 
-            if(value.includes('-')) values = value.split('-');
+            if(fields[key].includes('-')) values = fields[key].split('-');
 
-            if(value.includes('\\')) values = value.split('\\');
+            if(fields[key].includes('\\')) values = fields[key].split('\\');
 
             if(values.length === 2)
             {   
                 const firstNumberValidate = this.rangeValidate(values[0], key);
                 const secondNumberValidate = this.rangeValidate(values[1], key);
-                if(!(firstNumberValidate && secondNumberValidate)) errors.push('error');
-            };
-            
-            if(!this.rangeValidate(value, key)) errors.push('error');
-        })
+                if(!(firstNumberValidate && secondNumberValidate)) throw new InvalidCronException(cronExpression);
+                continue;
+            }
 
-        return errors.length != 0;
+            if(!this.rangeValidate(fields[key], key)) throw new InvalidCronException(cronExpression);
+        }
     }
 
     private rangeValidate(value: string, key: number): boolean
     {
-        return Number(value) >= this.ranges[key][0] || Number(value) <= this.ranges[key][1] || value === '*'
+        return (Number(value) >= this.ranges[key][0] && Number(value) <= this.ranges[key][1]) || value === '*'
     }
 }  
