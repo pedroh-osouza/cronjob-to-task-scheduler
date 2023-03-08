@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "ts-node tests/cronToXml.ts"
+    "test": "ts-node tests/teste.ts"
   },
   "repository": {
     "type": "git",
