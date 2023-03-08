@@ -48,7 +48,7 @@ export class SelectScheduleType
         if(hour) return Minute.hour(hours);
         if(minuteHour) return Daily.minuteHour(minutes, hours);
         if(dayOfMonth) return Monthly.dayOfMonth(daysOfMonths);
-        if(minuteDayOfMonth) return;
+        // if(minuteDayOfMonth) return Monthly.minuteDayOfMonth(minutes, daysOfMonths);
         if(hourDayOfMonth) return;
         if(minuteHourDayOfMonth) return;
         if(month) return;
