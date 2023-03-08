@@ -14,19 +14,14 @@ const objeto = {
             xmlns: 'http://schemas.microsoft.com/windows/2004/02/mit/task'
         },
         Triggers: {
-            CalendarTrigger: {
-                StartBoundary: {
-                    _text: '2023-03-08T12:57:25'
+            CalendarTrigger: [
+                {
+                    _text: '0'
                 },
-                Enabled: {
-                    _text: 'true'
-                },
-                ScheduleByDay: {
-                    DaysInterval: {
-                        _text: 1
-                    }
+                {
+                    _text:'1'
                 }
-            }
+            ],
         },
         Actions: {
             _attributes: {
@@ -43,6 +38,5 @@ const objeto = {
 
 const options = { compact: true, ignoreComment: true, spaces: 4};
 const xml = js2xml(objeto, options);
-console.log(xml);
 
 fs.writeFileSync('meu.xml', xml)
