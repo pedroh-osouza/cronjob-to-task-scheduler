@@ -2,6 +2,7 @@ import { Cron } from "./Handlers/Cron";
 import { js2xml } from 'xml-js';
 import * as fs from 'fs';
 import { InvalidCronException } from "./Exceptions/InvalidCronException";
+import { ScheduleType } from "./Handlers/ScheduleType";
 
 export class CronToXml
 {
@@ -10,7 +11,7 @@ export class CronToXml
         const cron = new Cron();
         cron.validate(cronExpression);
         const data = cron.toData(cronExpression);
-        console.log(data)
+        const scheduleType = ScheduleType.select(data);
 
         // const options = { compact: true, ignoreComment: true, spaces: 4};
         // const xml = js2xml({}, options);
