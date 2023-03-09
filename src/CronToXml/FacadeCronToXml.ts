@@ -3,6 +3,7 @@ import { Daily } from "./Handlers/SchedulesTypes/Daily";
 import { Monthly } from "./Handlers/SchedulesTypes/Monthly";
 import { selectScheduleType } from "./Handlers/SchedulesTypes/selectScheduleType";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
+import { Task } from "./Handlers/Task";
 
 export class CronToXml
 {
@@ -10,10 +11,11 @@ export class CronToXml
     {
         const cron = new Cron();
         cron.validate(cronExpression);
+
         const cronData = cron.toData(cronExpression);
         const scheduleType = selectScheduleType(cronData);
-        let trigger;
 
+        let trigger;
         switch(scheduleType)
         {
             case 'daily':
@@ -29,6 +31,10 @@ export class CronToXml
                 throw new Error('error on select scheduleType')
         }
 
-        console.log(trigger);
+        if(trigger)
+        {
+            const task = new Task(taskName, trigger, taskRun);
+            task.schedule()
+        }
     }
 }
