@@ -1,8 +1,8 @@
-type ScheduleByDay = {
+export type ScheduleByDay = {
   DaysInterval: number
 };
 
-type ScheduleByWeek = {
+export type ScheduleByWeek = {
   DaysOfWeek: {
     Sunday?: {};
     Monday?: {};
@@ -12,15 +12,15 @@ type ScheduleByWeek = {
     Friday?: {};
     Saturday?: {};
     WeeksInterval: {
-      _text: number & {min: 1, max: 52}
+      _text: number & { min: 1, max: 52 }
     }
   }
 }
 
 type Day = {
-  _text: number & {min: 1, max: 32}
+  _text: number & { min: 1, max: 32 }
 }
-type ScheduleByMonth = {
+export type ScheduleByMonth = {
   Months: {
     January?: {};
     February?: {};
@@ -36,7 +36,7 @@ type ScheduleByMonth = {
     December?: {};
   };
   DaysOfMonth: {
-    Day: Day|Day[]
+    Day: Day | Day[]
   }
 }
 
@@ -83,7 +83,7 @@ export interface ScheduleXmlObject {
       version: string;
       xmlns: string;
     };
-    Triggers: Trigger[]|Trigger;
+    Triggers: Trigger[] | Trigger;
     Actions: {
       _attributes: {
         Context: string;
@@ -96,4 +96,3 @@ export interface ScheduleXmlObject {
     };
   };
 }
-  

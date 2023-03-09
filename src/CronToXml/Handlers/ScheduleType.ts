@@ -12,7 +12,7 @@ export class ScheduleType
 
     static daily(cronData: CronData): Trigger
     {
-        ;
+        
     }
 
     static weekly(cronData: CronData): Trigger
