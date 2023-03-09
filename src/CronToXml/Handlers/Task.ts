@@ -10,10 +10,17 @@ export class Task
 {
     constructor(public taskName: string, public triggers: CalendarTrigger|CalendarTrigger[], public command: string){}
 
-    schedule()
+    schedule(): boolean
     {
-        this.existsTask(this.taskName)
-        this.toSchedule(this.build());
+        try{
+            this.existsTask(this.taskName);
+            this.toSchedule(this.build());
+            return true;
+        } catch(error){
+            return false
+        } finally {
+            return false
+        }
     }
 
     private build(): ScheduleXmlObject

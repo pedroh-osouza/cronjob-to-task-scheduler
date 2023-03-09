@@ -34,7 +34,7 @@ export class CronToXml
         if(trigger)
         {
             const task = new Task(taskName, trigger, taskRun);
-            task.schedule()
+            if(task.schedule()) console.log('tarefa agendada com sucesso')
         }
     }
 }
