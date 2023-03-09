@@ -1,4 +1,4 @@
-import { ScheduleXmlObject, CalendarTrigger } from "../interfaces/ScheduleXmlObject";
+import { ScheduleXmlObject, CalendarTrigger, Triggers } from "../interfaces/ScheduleXmlObject";
 import { js2xml } from 'xml-js';
 import fs from 'fs';
 import { exec } from 'child_process';
@@ -8,7 +8,7 @@ import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
 
 export class Task
 {
-    constructor(public taskName: string, public triggers: CalendarTrigger|CalendarTrigger[], public command: string){}
+    constructor(public taskName: string, public triggers: Triggers, public command: string){}
 
     schedule(): boolean
     {
@@ -37,9 +37,7 @@ export class Task
                     xmlns: 'http://schemas.microsoft.com/windows/2004/02/mit/task',
                     version: '1.2',
                 },
-                Triggers: {
-                    CalendarTrigger: this.triggers
-                },
+                Triggers: this.triggers,
                 Actions: {
                     _attributes: {
                         Context: 'Author',
@@ -66,9 +64,9 @@ export class Task
             const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`;
 
             exec(command, (error, stdout, stderr) => {
-                if (error) throw new Error('error when scheduling task')
+                if (error) console.log(error)
 
-                if (stderr) throw new Error('error when scheduling task')
+                if (stderr) console.log(stderr)
 
                 fs.unlink(xmlFilePath, (err) => {
                     if (err) return

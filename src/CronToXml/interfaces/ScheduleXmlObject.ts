@@ -42,31 +42,6 @@ export type ScheduleByMonth = {
   }
 }
 
-export type TimeTrigger = {
-  Repetition?: {
-    Interval: {
-      _text: string;
-    };
-    Duration: {
-      _text: string;
-    };
-    StopAtDurationEnd: {
-      _text: boolean;
-    };
-  };
-  StartBoundary: {
-    _text: string;
-  };
-  EndBoundary?: {
-    _text: string
-  };
-  ExecutionTimeLimit?: {
-    _text: string;
-  };
-  Enabled: {
-    _text: boolean
-  };
-}
 export type CalendarTrigger = {
     Repetition?: {
       Interval: {
@@ -96,6 +71,36 @@ export type CalendarTrigger = {
     ScheduleByMonth?: ScheduleByMonth
 }
 
+export type ScheduleTimeTrigger = {
+  Repetition?: {
+    Interval: {
+      _text: string;
+    };
+    Duration?: {
+      _text: string;
+    };
+    StopAtDurationEnd: {
+      _text: boolean;
+    };
+  };
+  StartBoundary: {
+    _text: string;
+  };
+  EndBoundary?: {
+    _text: string
+  };
+  ExecutionTimeLimit?: {
+    _text: string;
+  };
+  Enabled: {
+    _text: boolean
+  };
+}
+
+export type Triggers = {
+  TimeTrigger?: ScheduleTimeTrigger| ScheduleTimeTrigger[];
+  CalendarTrigger?: CalendarTrigger|CalendarTrigger[];
+}
 
 export interface ScheduleXmlObject {
   _declaration: {
@@ -109,10 +114,7 @@ export interface ScheduleXmlObject {
       version: string;
       xmlns: string;
     };
-    Triggers: {
-      TimeTrigger?: TimeTrigger| TimeTrigger[];
-      CalendarTrigger?: CalendarTrigger|CalendarTrigger[];
-    };
+    Triggers: Triggers;
     Actions: {
       _attributes: {
         Context: string;

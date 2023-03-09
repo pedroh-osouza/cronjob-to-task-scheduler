@@ -1,9 +1,9 @@
 import { CronData } from "../../interfaces/CronData";
-import { ScheduleByDay, CalendarTrigger } from "../../interfaces/ScheduleXmlObject";
+import { ScheduleByDay, CalendarTrigger, Triggers } from "../../interfaces/ScheduleXmlObject";
 import { StartTime } from "../StartTime";
 
 export class Daily {
-    static getTrigger(cronData: CronData): CalendarTrigger | CalendarTrigger[] {
+    static getTrigger(cronData: CronData): Triggers {
         const scheduleByDay: ScheduleByDay = {
             DaysInterval: {
                 _text: 1
@@ -14,17 +14,19 @@ export class Daily {
 
         if (!Array.isArray(startTimes)) {
             return {
-                Enabled: {
-                    _text: true
-                },
-                StartBoundary: {
-                    _text: startTimes
-                },
-                ScheduleByDay: scheduleByDay
+                CalendarTrigger: {
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: startTimes
+                    },
+                    ScheduleByDay: scheduleByDay
+                }
             }
         }
 
-        let triggers: CalendarTrigger[] = [];
+        let calendarTriggers: CalendarTrigger[] = [];
 
         for (let i = 0; i < startTimes.length; i++) {
             let trigger: CalendarTrigger = {
@@ -37,9 +39,11 @@ export class Daily {
                 ScheduleByDay: scheduleByDay,
             }
 
-            triggers.push(trigger);
+            calendarTriggers.push(trigger);
         };
         
-        return triggers;
+        return {
+            TimeTrigger: calendarTriggers
+        };
     }
 }

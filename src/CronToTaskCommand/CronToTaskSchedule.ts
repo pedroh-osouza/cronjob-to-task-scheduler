@@ -1,9 +1,9 @@
-import { DaysOfMonth } from "./Handlers/DaysOfMonth";
-import { DaysOfWeek } from "./Handlers/DaysOfWeek";
-import { Hours } from "./Handlers/Hours";
-import { Minutes } from "./Handlers/Minutes";
-import { Months } from "./Handlers/Months";
-import { SelectScheduleType } from "./Handlers/SelectScheduleType";
+import { DaysOfMonth } from "../Handlers/DaysOfMonth";
+import { DaysOfWeek } from "../Handlers/DaysOfWeek";
+import { Hours } from "../Handlers/Hours";
+import { Minutes } from "../Handlers/Minutes";
+import { Months } from "../Handlers/Months";
+import { SelectScheduleType } from "../Handlers/SelectScheduleType";
 
 export class CronToTaskSchedule
 {
