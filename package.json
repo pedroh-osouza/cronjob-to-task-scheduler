@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "schedule": "schtasks /create /tn meuxml /xml arquivo.xml",
     "test": "ts-node tests/teste.ts"
   },
   "repository": {

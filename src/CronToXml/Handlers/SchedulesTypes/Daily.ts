@@ -17,7 +17,7 @@ export class Daily
         if(!Array.isArray(startTimes))
         {
             return {
-                CalendaryTrigger: {
+                CalendarTrigger: {
                     Enabled: {
                         _text : true
                     },
@@ -34,7 +34,7 @@ export class Daily
         for(let i = 0; i< startTimes.length; i++)
         {
             let trigger: Trigger = {
-                CalendaryTrigger: {
+                CalendarTrigger: {
                     Enabled: {
                         _text : true
                     },

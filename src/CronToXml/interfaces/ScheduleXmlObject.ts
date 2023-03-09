@@ -43,7 +43,7 @@ export type ScheduleByMonth = {
 }
 
 export type Trigger = {
-  CalendaryTrigger: {
+  CalendarTrigger: {
     Repetition?: {
       Interval: {
         _text: string;
