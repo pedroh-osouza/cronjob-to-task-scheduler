@@ -48,7 +48,9 @@ export class Task
         const filenameXml = 'arquivo.xml';
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
         
-        fs.writeFile(filenameXml, xml, (err=>{
+        fs.writeFile(filenameXml, xml, (err =>{
+
+            if(err) throw err;
             const command = `schtasks /create /tn "${this.taskName}" /xml "${filenameXml}"`;
 
             exec(command, (error, stdout, stderr) => {
