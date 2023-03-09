@@ -1,8 +1,8 @@
 import { Cron } from "./Handlers/Cron";
-import { js2xml } from 'xml-js';
-import * as fs from 'fs';
-import { InvalidCronException } from "./Exceptions/InvalidCronException";
-import { ScheduleType } from "./Handlers/ScheduleType";
+import { Daily } from "./Handlers/SchedulesTypes/Daily";
+import { Monthly } from "./Handlers/SchedulesTypes/Monthly";
+import { selectScheduleType } from "./Handlers/SchedulesTypes/selectScheduleType";
+import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 
 export class CronToXml
 {
@@ -11,12 +11,24 @@ export class CronToXml
         const cron = new Cron();
         cron.validate(cronExpression);
         const cronData = cron.toData(cronExpression);
-        const scheduleType = ScheduleType.select(cronData);
-        const triggers = ScheduleType[scheduleType](cronData)
-        
-        // const options = { compact: true, ignoreComment: true, spaces: 4};
-        // const xml = js2xml({}, options);
+        const scheduleType = selectScheduleType(cronData);
+        let trigger;
 
-        // fs.writeFileSync('task.xml', xml)
+        switch(scheduleType)
+        {
+            case 'daily':
+                trigger = Daily.getTrigger(cronData);
+                break;
+            case 'weekly':
+                trigger = Weekly.getTrigger(cronData);
+                break;
+            case 'monthly':
+                trigger = Monthly.getTrigger(cronData);
+                break;
+            default:
+                throw new Error('error on select scheduleType')
+        }
+
+        console.log(trigger);
     }
 }

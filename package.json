@@ -23,6 +23,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "moment": "^2.29.4",
     "xml-js": "^1.6.11"
   }
 }

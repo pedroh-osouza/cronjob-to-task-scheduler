@@ -1,5 +1,7 @@
 export type ScheduleByDay = {
-  DaysInterval: number
+  DaysInterval: {
+    _text: number
+  }
 };
 
 export type ScheduleByWeek = {
@@ -18,7 +20,7 @@ export type ScheduleByWeek = {
 }
 
 type Day = {
-  _text: number & { min: 1, max: 32 }
+  _text: number & { min: 1, max: 31 }
 }
 export type ScheduleByMonth = {
   Months: {
@@ -54,10 +56,10 @@ export type Trigger = {
       };
     };
     StartBoundary: {
-      _text: Date;
+      _text: string;
     };
     EndBoundary?: {
-      _text: Date
+      _text: string
     };
     ExecutionTimeLimit?: {
       _text: string;
