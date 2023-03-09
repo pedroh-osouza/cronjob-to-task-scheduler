@@ -70,21 +70,32 @@ export class Cron {
 
         for(const index in fields)
         {
-            let key = Number(index)
+            let key: number = Number(index)
+            
             const values = this.cronPartToArray(fields[key]);
-
+            
             if(values)
             {
-                if(fields[key].includes(',')) data[key] = values;
+                if(fields[key].includes(','))
+                {
+                    data.push(values)
+                };
+
                 if(fields[key].includes('-'))
                 {
+                    const firstNumber = Number(values[0]);
+                    const secondNumber = Number(values[1]);
+
                     let auxArray = [];
-                    for(let i; i = Number(values[0]); i <= Number(values[1]))
+                    for(let i = firstNumber; i <= secondNumber; i++)
                     {
                         if(i<10) auxArray.push('0'+i.toString());
                         auxArray.push(i.toString())
                     }
+
+                    data.push(auxArray);
                 }
+
                 continue;
             }
 

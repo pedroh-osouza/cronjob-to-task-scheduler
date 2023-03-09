@@ -9,8 +9,8 @@ export class CronToXml
     {
         const cron = new Cron();
         cron.validate(cronExpression);
-        // const data = cron.toData(cronExpression);
-        // console.log(data)
+        const data = cron.toData(cronExpression);
+        console.log(data)
 
         // const options = { compact: true, ignoreComment: true, spaces: 4};
         // const xml = js2xml({}, options);
