@@ -40,7 +40,7 @@ type ScheduleByMonth = {
   }
 }
 
-type Trigger = {
+export type Trigger = {
   CalendaryTrigger: {
     Repetition?: {
       Interval: {

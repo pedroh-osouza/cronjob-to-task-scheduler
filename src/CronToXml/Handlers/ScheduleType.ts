@@ -1,4 +1,5 @@
 import { CronData } from "../interfaces/CronData";
+import { Trigger } from "../interfaces/ScheduleXmlObject";
 
 export class ScheduleType
 {   
@@ -9,18 +10,18 @@ export class ScheduleType
         return 'daily'
     }
 
-    static daily(cronData: CronData)
+    static daily(cronData: CronData): Trigger
     {
-
+        ;
     }
 
-    static weekly(cronData: CronData)
+    static weekly(cronData: CronData): Trigger
     {
-
+        
     }
 
-    static monthly(cronData: CronData)
+    static monthly(cronData: CronData): Trigger
     {
-
+        
     }
 }

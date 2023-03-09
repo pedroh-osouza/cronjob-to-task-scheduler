@@ -10,9 +10,10 @@ export class CronToXml
     {
         const cron = new Cron();
         cron.validate(cronExpression);
-        const data = cron.toData(cronExpression);
-        const scheduleType = ScheduleType.select(data);
-
+        const cronData = cron.toData(cronExpression);
+        const scheduleType = ScheduleType.select(cronData);
+        const triggers = ScheduleType[scheduleType](cronData)
+        
         // const options = { compact: true, ignoreComment: true, spaces: 4};
         // const xml = js2xml({}, options);
 
