@@ -1,9 +1,11 @@
-import { ScheduleXmlObject, Trigger } from "../interfaces/ScheduleXmlObject";
+import { ScheduleXmlObject, CalendarTrigger } from "../interfaces/ScheduleXmlObject";
 import { js2xml } from 'xml-js';
+import fs from 'fs';
+import { exec } from 'child_process';
 
 export class Task
 {
-    constructor(public taskName: string, public triggers: Trigger|Trigger[], public command: string){}
+    constructor(public taskName: string, public triggers: CalendarTrigger|CalendarTrigger[], public command: string){}
 
     schedule()
     {
@@ -24,7 +26,9 @@ export class Task
                     xmlns: 'http://schemas.microsoft.com/windows/2004/02/mit/task',
                     version: '1.2',
                 },
-                Triggers: this.triggers,
+                Triggers: {
+                    CalendarTrigger: this.triggers
+                },
                 Actions: {
                     _attributes: {
                         Context: 'Author',
@@ -39,14 +43,25 @@ export class Task
         }
     }
 
-    private toSchedule(scheduleXmlObject:ScheduleXmlObject)
+    private async toSchedule(scheduleXmlObject:ScheduleXmlObject)
     {
+        const filenameXml = 'arquivo.xml';
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
-        const fs = require('fs');
+        
+        fs.writeFile(filenameXml, xml, (err=>{
+            const command = `schtasks /create /tn "${this.taskName}" /xml "${filenameXml}"`;
 
-        fs.writeFile('arquivo.xml', xml, function(err: Error) {
-            if (err) throw err;
-            console.log('Arquivo salvo com sucesso!');
-        });       
+            exec(command, (error, stdout, stderr) => {
+                if (error) {
+                  console.error(`Erro ao agendar tarefa: ${error.message}`);
+                  return;
+                }
+                if (stderr) {
+                  console.error(`Erro ao agendar tarefa: ${stderr}`);
+                  return;
+                }
+                console.log(`Tarefa agendada com sucesso: ${stdout}`);
+            }); 
+        }));          
     }
 }

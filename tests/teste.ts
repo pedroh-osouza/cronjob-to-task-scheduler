@@ -1,3 +1,3 @@
 import { CronToXml } from "../src/CronToXml/FacadeCronToXml";
 
-CronToXml.convert('MyTask', '00 07 * * *', 'notepad.exe')
+CronToXml.convert('meuXml', '00,30 07,17 * * *', 'notepad.exe')

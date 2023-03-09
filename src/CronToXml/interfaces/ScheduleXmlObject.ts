@@ -42,8 +42,7 @@ export type ScheduleByMonth = {
   }
 }
 
-export type Trigger = {
-  CalendarTrigger: {
+export type CalendarTrigger = {
     Repetition?: {
       Interval: {
         _text: string;
@@ -70,8 +69,8 @@ export type Trigger = {
     ScheduleByDay?: ScheduleByDay;
     ScheduleByWeek?: ScheduleByWeek;
     ScheduleByMonth?: ScheduleByMonth
-  }
 }
+
 
 export interface ScheduleXmlObject {
   _declaration: {
@@ -85,7 +84,9 @@ export interface ScheduleXmlObject {
       version: string;
       xmlns: string;
     };
-    Triggers: Trigger[] | Trigger;
+    Triggers: {
+      CalendarTrigger: CalendarTrigger|CalendarTrigger[]
+    };
     Actions: {
       _attributes: {
         Context: string;
