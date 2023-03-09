@@ -4,5 +4,6 @@ export function selectScheduleType(cronData: CronData)
 {
     if(cronData.daysOfWeeks != '*') return 'weekly';
     if(cronData.daysOfMonths != '*' || cronData.months != '*') return 'monthly';
-    return 'daily'
+    if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths == '*' && cronData.months =='*' && cronData.daysOfWeeks == '*') return 'daily'
+    return 'time'
 }
