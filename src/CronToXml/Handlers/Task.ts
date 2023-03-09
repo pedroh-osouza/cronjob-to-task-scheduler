@@ -2,6 +2,9 @@ import { ScheduleXmlObject, CalendarTrigger } from "../interfaces/ScheduleXmlObj
 import { js2xml } from 'xml-js';
 import fs from 'fs';
 import { exec } from 'child_process';
+import os from 'os';
+import path from 'path';
+import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
 
 export class Task
 {
@@ -9,6 +12,7 @@ export class Task
 
     schedule()
     {
+        this.existsTask(this.taskName)
         this.toSchedule(this.build());
     }
 
@@ -45,25 +49,31 @@ export class Task
 
     private async toSchedule(scheduleXmlObject:ScheduleXmlObject)
     {
-        const filenameXml = 'arquivo.xml';
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
+        const tempDir = os.tmpdir();
+        const xmlFilePath = path.join(tempDir, `${this.taskName}.xml`);
         
-        fs.writeFile(filenameXml, xml, (err =>{
+        fs.writeFile(xmlFilePath, xml, (err =>{
+            if(err) throw new Error('error when scheduling task')
 
-            if(err) throw err;
-            const command = `schtasks /create /tn "${this.taskName}" /xml "${filenameXml}"`;
+            const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`;
 
             exec(command, (error, stdout, stderr) => {
-                if (error) {
-                  console.error(`Erro ao agendar tarefa: ${error.message}`);
-                  return;
-                }
-                if (stderr) {
-                  console.error(`Erro ao agendar tarefa: ${stderr}`);
-                  return;
-                }
-                console.log(`Tarefa agendada com sucesso: ${stdout}`);
-            }); 
-        }));          
+                if (error) throw new Error('error when scheduling task')
+
+                if (stderr) throw new Error('error when scheduling task')
+
+                fs.unlink(xmlFilePath, (err) => {
+                    if (err) return
+                });
+            });
+        }))
+    }
+
+    private existsTask(taskName: string)
+    {
+        exec(`schtasks /query /TN "${taskName}"`, (error, stdout, stderr) => {
+            if(!error) throw new DuplicatedTaskException(this.taskName);
+        });
     }
 }
