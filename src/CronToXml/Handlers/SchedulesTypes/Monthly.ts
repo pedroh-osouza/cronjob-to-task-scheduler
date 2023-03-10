@@ -226,10 +226,10 @@ export class Monthly
                         _text: 'PT1M'
                     },
                     StopAtDurationEnd: {
-                        _text: false
+                        _text: true
                     },
                     Duration: {
-                        _text: 'P1D'
+                        _text: 'P30D'
                     }
                 },
                 Enabled: {
