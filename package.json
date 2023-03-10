@@ -1,11 +1,10 @@
 {
   "name": "cronjob-to-task-scheduler",
   "version": "1.0.0",
-  "description": "Converte uma expressão CRON para um comando de agendamento de tarefa no windows",
+  "description": "Converte uma expressão CRON para um agendamento de tarefa no windows",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "schedule": "schtasks /create /tn meuxml /xml arquivo.xml",
     "test": "ts-node tests/teste.ts"
   },
   "repository": {
