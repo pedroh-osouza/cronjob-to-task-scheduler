@@ -1,5 +1,5 @@
 import { CronData } from "../../interfaces/CronData";
-import { CalendarTrigger, Day, ScheduleByMonth, Triggers } from "../../interfaces/ScheduleXmlObject";
+import { CalendarTrigger, Triggers } from "../../interfaces/ScheduleXmlObject";
 import moment from 'moment'
 import { DaysOfMonth } from "../DaysOfMonth";
 import { StartTime } from "../StartTime";
@@ -7,13 +7,15 @@ export class Monthly
 {
     static getTrigger(cronData: CronData): Triggers
     {
+        
         if(cronData.minutes != '*' && cronData.hours != '*') return this.minuteHour(cronData);
         if(cronData.minutes != '*' && cronData.hours == '*') return this.minute(cronData);
         if(cronData.minutes == '*' && cronData.hours != '*') return this.hour(cronData);
+        
+        const duration = (cronData.daysOfMonths != '*') ? 'P1D' : 'P30D'
 
         const now = moment();
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
-        const duration = (cronData.daysOfMonths != '*' && cronData.months == '*') ? 'P1D' : 'P30D';
         return {
             CalendarTrigger: {
                 Repetition: {
