@@ -45,7 +45,7 @@ export class Monthly
         const now = moment();
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
 
-        const duration = (cronData.daysOfMonths != '*' && cronData.months == '*') ? 'P1D' : 'P30D';
+        const duration = (cronData.daysOfMonths != '*') ? 'P1D' : 'P30D'
 
         if(!Array.isArray(cronData.minutes))
         {
