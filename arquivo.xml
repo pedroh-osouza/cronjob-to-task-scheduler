@@ -3,12 +3,12 @@
     <Triggers>
         <CalendarTrigger>
             <Repetition>
-                <Interval>PT1M</Interval>
-                <StopAtDurationEnd>true</StopAtDurationEnd>
+                <Interval>PT1H</Interval>
+                <StopAtDurationEnd>false</StopAtDurationEnd>
                 <Duration>P1D</Duration>
             </Repetition>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-10T17:23:11-04:00</StartBoundary>
+            <StartBoundary>2023-03-10T17:01:00-04:00</StartBoundary>
             <ScheduleByMonthDayOfWeek>
                 <DaysOfWeek>
                     <Monday/>

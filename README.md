@@ -25,21 +25,23 @@ Converte um agendamento cron para um agendamento windows
 * 1 * * 1 // FEITO
 1 1 * * 1 // FEITO
 
-<!-- * * 1 * 1
-1 * 1 * 1
-* 1 1 * 1
-1 1 1 * 1 -->
 
-* * * 1 1
+
+* * * 1 1 // FEITO
 1 * * 1 1
 * 1 * 1 1
 1 1 * 1 1
 
-<!-- * * 1 1 1
-1 * 1 1 1
-* 1 1 1 1
-1 1 1 1 1 -->
+* * 1 * 1 // IMPOSSIVEL
+1 * 1 * 1 // IMPOSSIVEL
+* 1 1 * 1 // IMPOSSIVEL
+1 1 1 * 1 // IMPOSSIVEL
+* * 1 1 1 // IMPOSSIVEL
+1 * 1 1 1 // IMPOSSIVEL
+* 1 1 1 1 // IMPOSSIVEL
+1 1 1 1 1 // IMPOSSIVEL
 
 # Limitações
 
 Um agendamento deve ter no máximo 37 disparadores
+Não suporta dayOfMonth e DayOfWeek juntos
