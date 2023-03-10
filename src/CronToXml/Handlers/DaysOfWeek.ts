@@ -6,7 +6,7 @@ interface Weeks {
 }
 export class DaysOfWeek
 {
-    static getScheduleWeek(cronData: CronData)
+    static getScheduleWeek(cronData: CronData): ScheduleByWeek
     {   
         const weeks = this.getWeeks(cronData);
 
@@ -19,16 +19,16 @@ export class DaysOfWeek
 
     private static getWeeks(cronData: CronData)
     {
-        const weeks = [
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday'
-        ]
+        const daysOfWeekName: { [key: string]: string} = {
+            '0': 'Sunday',
+            '1': 'Monday',
+            '2': 'Tuesday',
+            '3': 'Wednesday',
+            '4': 'Thursday',
+            '5': 'Friday',
+            '6': 'Saturday',
+            '7': 'Sunday',
+        };
 
         const selectedWeeks: Weeks = {};
 
@@ -36,18 +36,19 @@ export class DaysOfWeek
         {
             if(cronData.daysOfWeeks === '*')
             {
-                for(const week of weeks) selectedWeeks[week] = undefined;
+                for(let i = 0; i < 7; i++) selectedWeeks[daysOfWeekName[i.toString()]] = undefined;
                 return selectedWeeks;
             }
 
-            const weekName = weeks[Number(cronData.daysOfWeeks) - 1]
+            const weekName = daysOfWeekName[cronData.daysOfWeeks]
             selectedWeeks[weekName] = undefined
             return selectedWeeks;
         }
         
-        for(let i = 0; i < cronData.daysOfWeeks.length; i++)
+        for(const dayOfWeek of cronData.daysOfWeeks)
         {
-            const weekName = weeks[Number(cronData.daysOfWeeks[i]) - 1]
+            const key = String(Number(dayOfWeek));
+            const weekName = daysOfWeekName[key]
             selectedWeeks[weekName] = undefined
         }
 

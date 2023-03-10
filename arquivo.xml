@@ -2,16 +2,24 @@
 <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task" version="1.2">
     <Triggers>
         <CalendarTrigger>
+            <Repetition>
+                <Interval>PT1M</Interval>
+                <StopAtDurationEnd>true</StopAtDurationEnd>
+                <Duration>P1D</Duration>
+            </Repetition>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-10T16:00:00-04:00</StartBoundary>
-            <ScheduleByMonth>
-                <DaysOfMonth>
-                    <Day>10</Day>
-                </DaysOfMonth>
-                <Months>
-                    <February/>
-                </Months>
-            </ScheduleByMonth>
+            <StartBoundary>2023-03-10T16:09:13-04:00</StartBoundary>
+            <ScheduleByWeek>
+                <DaysOfWeek>
+                    <Sunday/>
+                    <Monday/>
+                    <Tuesday/>
+                    <Wednesday/>
+                    <Thursday/>
+                    <Friday/>
+                    <Saturday/>
+                </DaysOfWeek>
+            </ScheduleByWeek>
         </CalendarTrigger>
     </Triggers>
     <Actions Context="Author">
