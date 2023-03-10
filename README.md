@@ -45,3 +45,4 @@ Converte um agendamento cron para um agendamento windows
 
 Um agendamento deve ter no máximo 37 disparadores
 Não suporta dayOfMonth e DayOfWeek juntos
+Não implementado a regra da /
