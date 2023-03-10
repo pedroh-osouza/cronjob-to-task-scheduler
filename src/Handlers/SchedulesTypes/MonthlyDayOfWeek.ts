@@ -1,4 +1,5 @@
 import { CronData } from "../../interfaces/CronData";
+import { ScheduleByMonthDayOfWeek } from "../../interfaces/ScheduleXmlObject";
 
 export class MonthlyDayOfWeek
 {

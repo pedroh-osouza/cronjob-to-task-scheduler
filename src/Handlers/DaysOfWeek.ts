@@ -17,7 +17,7 @@ export class DaysOfWeek
         return scheduleByWeek;
     }
 
-    private static getWeeks(cronData: CronData)
+    static getWeeks(cronData: CronData)
     {
         const daysOfWeekName: { [key: string]: string} = {
             '0': 'Sunday',

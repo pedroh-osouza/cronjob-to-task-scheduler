@@ -54,7 +54,7 @@ export class DaysOfMonth
         };
     }
 
-    private static getMonths(cronData: CronData)
+    static getMonths(cronData: CronData)
     {
         const months = [
             'January',
