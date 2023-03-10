@@ -3,12 +3,12 @@
     <Triggers>
         <CalendarTrigger>
             <Repetition>
-                <Interval>PT1M</Interval>
-                <StopAtDurationEnd>true</StopAtDurationEnd>
+                <Interval>PT1H</Interval>
+                <StopAtDurationEnd>false</StopAtDurationEnd>
                 <Duration>P30D</Duration>
             </Repetition>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-10T14:08:18-04:00</StartBoundary>
+            <StartBoundary>2023-03-10T14:10:00-04:00</StartBoundary>
             <ScheduleByMonth>
                 <DaysOfMonth>
                     <Day>1</Day>
@@ -44,11 +44,16 @@
                     <Day>31</Day>
                 </DaysOfMonth>
                 <Months>
-                    <January/>
-                    <February/>
                     <March/>
                     <April/>
                     <May/>
+                    <June/>
+                    <July/>
+                    <August/>
+                    <September/>
+                    <October/>
+                    <November/>
+                    <December/>
                 </Months>
             </ScheduleByMonth>
         </CalendarTrigger>
