@@ -7,10 +7,11 @@ export class TimeTrigger
     static getTrigger(cronData: CronData): Triggers
     {
         const now = moment();
-        let triggers: Triggers = {}
         
         if(!Array.isArray(cronData.minutes))
         {            
+            if(cronData.minutes != '*') now.set({minute: Number(cronData.minutes), second: 0})
+            
             return {
                 TimeTrigger: {
                     Enabled: {
@@ -34,7 +35,7 @@ export class TimeTrigger
         let timeTriggers: ScheduleTimeTrigger[] = [];
         for(let i = 0; i < cronData.minutes.length; i++)
         {
-            now.set({minute: Number(cronData.minutes[i])})
+            now.set({minute: Number(cronData.minutes[i]), second: 0})
             let trigger: ScheduleTimeTrigger = {
                 Enabled: {
                     _text: true

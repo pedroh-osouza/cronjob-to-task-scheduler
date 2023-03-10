@@ -21,8 +21,6 @@ Uma lista de valores com incremento, no formato valorInicial,valorInicial+increm
 
 # Possibilidades
 
-* * * * *
-1 * * * *
 * 1 * * *
 1 1 * * *
 * * 1 * *
