@@ -3,21 +3,37 @@
     <Triggers>
         <CalendarTrigger>
             <Repetition>
-                <Interval>PT1M</Interval>
-                <StopAtDurationEnd>true</StopAtDurationEnd>
+                <Interval>PT1H</Interval>
+                <StopAtDurationEnd>false</StopAtDurationEnd>
                 <Duration>P1D</Duration>
             </Repetition>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-10T16:09:13-04:00</StartBoundary>
+            <StartBoundary>2023-03-10T16:10:00-04:00</StartBoundary>
             <ScheduleByWeek>
                 <DaysOfWeek>
-                    <Sunday/>
                     <Monday/>
                     <Tuesday/>
                     <Wednesday/>
                     <Thursday/>
                     <Friday/>
-                    <Saturday/>
+                </DaysOfWeek>
+            </ScheduleByWeek>
+        </CalendarTrigger>
+        <CalendarTrigger>
+            <Repetition>
+                <Interval>PT1H</Interval>
+                <StopAtDurationEnd>false</StopAtDurationEnd>
+                <Duration>P1D</Duration>
+            </Repetition>
+            <Enabled>true</Enabled>
+            <StartBoundary>2023-03-10T16:20:00-04:00</StartBoundary>
+            <ScheduleByWeek>
+                <DaysOfWeek>
+                    <Monday/>
+                    <Tuesday/>
+                    <Wednesday/>
+                    <Thursday/>
+                    <Friday/>
                 </DaysOfWeek>
             </ScheduleByWeek>
         </CalendarTrigger>
