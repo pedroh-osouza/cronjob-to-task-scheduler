@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-16"?>
 <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task" version="1.2">
     <Triggers>
-        <TimeTrigger>
+        <CalendarTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:37:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
+            <StartBoundary>2023-03-09T10:30:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
+            <Enabled>true</Enabled>
+            <StartBoundary>2023-03-09T11:30:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
+            <Enabled>true</Enabled>
+            <StartBoundary>2023-03-09T12:30:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
     </Triggers>
     <Actions Context="Author">
         <Exec>
