@@ -2,6 +2,7 @@ import { CronData } from "../../interfaces/CronData";
 import { CalendarTrigger, Day, ScheduleByMonth, Triggers } from "../../interfaces/ScheduleXmlObject";
 import moment from 'moment'
 import { DaysOfMonth } from "../DaysOfMonth";
+import { StartTime } from "../StartTime";
 export class Monthly
 {
     static getTrigger(cronData: CronData): Triggers
@@ -9,6 +10,7 @@ export class Monthly
         if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.dayOfMonth(cronData);
         if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteDayOfMonth(cronData)
         if(cronData.minutes == '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.hourDayOfMonth(cronData)
+        if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteHourDayOfMonth(cronData)
 
         return {
 
@@ -154,6 +156,47 @@ export class Monthly
                 },
                 StartBoundary: {
                     _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                },
+                ScheduleByMonth: scheduleByMonth
+            }
+
+            calendarTriggers.push(trigger)
+        }
+        
+        return {
+            CalendarTrigger: calendarTriggers
+        };
+    }
+
+    private static minuteHourDayOfMonth(cronData: CronData): Triggers
+    {
+        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
+        const startTimes = StartTime.convert(cronData.minutes, cronData.hours);
+
+        if(!Array.isArray(startTimes))
+        {
+            return {
+                CalendarTrigger: {
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: startTimes
+                    },
+                    ScheduleByMonth: scheduleByMonth
+                }
+            }
+        }
+
+        let calendarTriggers: CalendarTrigger[] = [];
+        for(let i = 0; i < startTimes.length; i++)
+        {
+            const trigger: CalendarTrigger = {
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: startTimes[i]
                 },
                 ScheduleByMonth: scheduleByMonth
             }
