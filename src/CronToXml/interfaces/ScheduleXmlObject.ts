@@ -19,9 +19,10 @@ export type ScheduleByWeek = {
   }
 }
 
-type Day = {
-  _text: number & { min: 1, max: 31 }
+export type Day = {
+  _text: number
 }
+
 export type ScheduleByMonth = {
   Months: {
     January?: {};
@@ -47,7 +48,7 @@ export type CalendarTrigger = {
       Interval: {
         _text: string;
       };
-      Duration: {
+      Duration?: {
         _text: string;
       };
       StopAtDurationEnd: {

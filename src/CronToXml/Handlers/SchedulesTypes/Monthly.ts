@@ -1,6 +1,6 @@
 import { CronData } from "../../interfaces/CronData";
-import { CalendarTrigger, ScheduleByMonth, Triggers } from "../../interfaces/ScheduleXmlObject";
-
+import { CalendarTrigger, Day, ScheduleByMonth, Triggers } from "../../interfaces/ScheduleXmlObject";
+import moment from 'moment'
 export class Monthly
 {
     static getTrigger(cronData: CronData): Triggers
@@ -13,60 +13,56 @@ export class Monthly
 
     private static dayOfMonth(cronData: CronData): Triggers
     {
-        let days: [] = [];
+        const now = moment();
+        let days: Day[] = [];
+
         if(Array.isArray(cronData.daysOfMonths))
         {
             for (let i = 0; i < cronData.daysOfMonths.length; i++) {
-                const day = {
-                    Day: {
-                        _text: cronData.daysOfMonths[i]
-                    }
+                const day: Day = {
+                    _text: Number(cronData.daysOfMonths[i])
                 }
                 days.push(day)
             }
         }
 
+        if(days.length === 0)
+        {
+            const day: Day = {
+                _text: Number(cronData.daysOfMonths)
+            }
+
+            days.push(day);
+        }
+        
         const scheduleByMonth: ScheduleByMonth = {
             DaysOfMonth: {
                 Day: days
-            }
+            },
             Months: {
-
+                January:{},February:{},March:{},April:{},May:{},June:{},July:{},
+                August:{},September:{},October:{},November:{},December:{},
             }
         };
 
-        if (!Array.isArray(startTimes)) {
-            return {
-                CalendarTrigger: {
-                    Enabled: {
-                        _text: true
+        return {
+            CalendarTrigger: {
+                Repetition: {
+                    Interval: {
+                        _text: 'PT1M'
                     },
-                    StartBoundary: {
-                        _text: startTimes
+                    StopAtDurationEnd: {
+                        _text: false
                     },
-                    ScheduleByMonth: scheduleByMonth
-                }
-            }
-        }
-
-        let calendarTriggers: CalendarTrigger[] = [];
-
-        for (let i = 0; i < startTimes.length; i++) {
-            let trigger: CalendarTrigger = {
+                },
                 Enabled: {
                     _text: true
                 },
                 StartBoundary: {
-                    _text: startTimes[i]
+                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
                 },
-                ScheduleByMonth: scheduleByMonth,
+                ScheduleByMonth: scheduleByMonth
             }
-
-            calendarTriggers.push(trigger);
-        };
-        
-        return {
-            CalendarTrigger: calendarTriggers
-        };
+        }
     }
 }
