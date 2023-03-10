@@ -1,134 +1,78 @@
 <?xml version="1.0" encoding="UTF-16"?>
 <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task" version="1.2">
     <Triggers>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:15:00-04:00</StartBoundary>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:16:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-09T10:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:17:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-09T11:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:18:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-09T12:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:19:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-09T13:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:20:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-09T14:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+        <CalendarTrigger>
             <Repetition>
-                <Interval>PT1H</Interval>
+                <Interval>PT1M</Interval>
+                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:21:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:22:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:23:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:24:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:25:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:26:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:27:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:28:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:29:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
-        <TimeTrigger>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T23:30:00-04:00</StartBoundary>
-            <Repetition>
-                <Interval>PT1H</Interval>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-        </TimeTrigger>
+            <StartBoundary>2023-03-09T15:00:00-04:00</StartBoundary>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
     </Triggers>
     <Actions Context="Author">
         <Exec>

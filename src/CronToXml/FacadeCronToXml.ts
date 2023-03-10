@@ -15,7 +15,7 @@ export class CronToXml
 
         const cronData = cron.toData(cronExpression);
         const scheduleType = selectScheduleType(cronData);
-
+        console.log(scheduleType);
         let triggers;
         switch(scheduleType)
         {
