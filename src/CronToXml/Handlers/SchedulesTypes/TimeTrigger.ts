@@ -10,7 +10,7 @@ export class TimeTrigger
         
         if(!Array.isArray(cronData.minutes))
         {            
-            if(cronData.minutes != '*') now.set({minute: Number(cronData.minutes), second: 0})
+            (cronData.minutes != '*') ? now.set({minute: Number(cronData.minutes), second: 0}) : now.set({minute: now.minute(), second: 0}) 
             
             return {
                 TimeTrigger: {

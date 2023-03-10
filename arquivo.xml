@@ -1,78 +1,14 @@
 <?xml version="1.0" encoding="UTF-16"?>
 <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task" version="1.2">
     <Triggers>
-        <CalendarTrigger>
+        <TimeTrigger>
+            <Enabled>true</Enabled>
+            <StartBoundary>2023-03-09T23:37:00-04:00</StartBoundary>
             <Repetition>
                 <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
                 <StopAtDurationEnd>false</StopAtDurationEnd>
             </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T10:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
-        <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T11:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
-        <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T12:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
-        <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T13:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
-        <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T14:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
-        <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
-            <Enabled>true</Enabled>
-            <StartBoundary>2023-03-09T15:00:00-04:00</StartBoundary>
-            <ScheduleByDay>
-                <DaysInterval>1</DaysInterval>
-            </ScheduleByDay>
-        </CalendarTrigger>
+        </TimeTrigger>
     </Triggers>
     <Actions Context="Author">
         <Exec>
