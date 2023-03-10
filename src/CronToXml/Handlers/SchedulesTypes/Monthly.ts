@@ -11,6 +11,7 @@ export class Monthly
         if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteDayOfMonth(cronData)
         if(cronData.minutes == '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.hourDayOfMonth(cronData)
         if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteHourDayOfMonth(cronData)
+        if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.month(cronData)
 
         return {
 
@@ -31,6 +32,9 @@ export class Monthly
                     StopAtDurationEnd: {
                         _text: false
                     },
+                    Duration: {
+                        _text: 'P1D'
+                    }
                 },
                 Enabled: {
                     _text: true
@@ -171,6 +175,7 @@ export class Monthly
     private static minuteHourDayOfMonth(cronData: CronData): Triggers
     {
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
+
         const startTimes = StartTime.convert(cronData.minutes, cronData.hours);
 
         if(!Array.isArray(startTimes))
@@ -207,5 +212,34 @@ export class Monthly
         return {
             CalendarTrigger: calendarTriggers
         };
+    }
+
+    private static month(cronData: CronData): Triggers
+    {
+        const now = moment();
+        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
+
+        return {
+            CalendarTrigger: {
+                Repetition: {
+                    Interval: {
+                        _text: 'PT1M'
+                    },
+                    StopAtDurationEnd: {
+                        _text: false
+                    },
+                    Duration: {
+                        _text: 'P1D'
+                    }
+                },
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                },
+                ScheduleByMonth: scheduleByMonth
+            }
+        }
     }
 }
