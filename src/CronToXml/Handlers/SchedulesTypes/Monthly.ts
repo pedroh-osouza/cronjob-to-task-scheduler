@@ -6,4 +6,9 @@ export class Monthly
     {
         
     }
+
+    private static dayOfMonth()
+    {
+
+    }
 }
