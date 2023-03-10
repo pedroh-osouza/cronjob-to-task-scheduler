@@ -2,11 +2,6 @@
 <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task" version="1.2">
     <Triggers>
         <CalendarTrigger>
-            <Repetition>
-                <Interval>PT1M</Interval>
-                <Duration>PT1H</Duration>
-                <StopAtDurationEnd>false</StopAtDurationEnd>
-            </Repetition>
             <Enabled>true</Enabled>
             <StartBoundary>2023-03-10T10:00:00-04:00</StartBoundary>
             <ScheduleByWeek>

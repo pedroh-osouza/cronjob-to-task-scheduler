@@ -1,11 +1,12 @@
 import moment from "moment";
 import { CronData } from "../../interfaces/CronData";
-import { CalendarTrigger } from "../../interfaces/ScheduleXmlObject";
+import { CalendarTrigger, Triggers } from "../../interfaces/ScheduleXmlObject";
 import { DaysOfWeek } from "../DaysOfWeek";
+import { StartTime } from "../StartTime";
 
 export class Weekly
 {
-    static getTrigger(cronData: CronData)
+    static getTrigger(cronData: CronData): Triggers
     {
         if(cronData.minutes != '*' && cronData.hours != '*') return this.minuteHour(cronData);
         if(cronData.minutes != '*' && cronData.hours == '*') return this.minute(cronData);
@@ -37,7 +38,7 @@ export class Weekly
         }
     }
 
-    private static minute(cronData: CronData)
+    private static minute(cronData: CronData): Triggers
     {
         const now = moment();
         const scheduleByWeek = DaysOfWeek.getScheduleWeek(cronData);
@@ -103,7 +104,7 @@ export class Weekly
         };
     }
 
-    private static hour(cronData: CronData)
+    private static hour(cronData: CronData): Triggers
     {
         const now = moment();
         const scheduleByWeek = DaysOfWeek.getScheduleWeek(cronData);
@@ -170,6 +171,43 @@ export class Weekly
 
     private static minuteHour(cronData: CronData)
     {
+        const scheduleByWeek = DaysOfWeek.getScheduleWeek(cronData);
+
+        const startTimes = StartTime.convert(cronData.minutes, cronData.hours);
+
+        if(!Array.isArray(startTimes))
+        {
+            return {
+                CalendarTrigger: {
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: startTimes
+                    },
+                    ScheduleByWeek: scheduleByWeek
+                }
+            }
+        }
+
+        let calendarTriggers: CalendarTrigger[] = [];
+        for(let i = 0; i < startTimes.length; i++)
+        {
+            const trigger: CalendarTrigger = {
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: startTimes[i]
+                },
+                ScheduleByWeek: scheduleByWeek
+            }
+
+            calendarTriggers.push(trigger)
+        }
         
+        return {
+            CalendarTrigger: calendarTriggers
+        };
     }
 }
