@@ -14,11 +14,13 @@ export class Monthly
         if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.month(cronData)
         if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.minuteMonth(cronData)
         if(cronData.minutes == '*' && cronData.hours != '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.hourMonth(cronData)
+        if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.minuteHourMonth(cronData)
 
         return {
 
         };
     }
+
 
     private static dayOfMonth(cronData: CronData): Triggers
     {
@@ -377,5 +379,10 @@ export class Monthly
         return {
             CalendarTrigger: calendarTriggers
         };
+    }
+
+    private static minuteHourMonth(cronData: CronData): Triggers
+    {
+        
     }
 }
