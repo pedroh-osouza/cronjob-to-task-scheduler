@@ -17,7 +17,7 @@ Converte uma expressão CRON para um comando de agendamento de tarefa no windows
 1 1 * 1 * // FEITO
 * * 1 1 * // FEITO
 1 * 1 1 * // FEITO
-* 1 1 1 *
+* 1 1 1 * // FEITO
 1 1 1 1 *
 * * * * 1
 1 * * * 1
