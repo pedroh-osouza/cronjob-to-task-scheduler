@@ -102,7 +102,8 @@ export type CalendarTrigger = {
     };
     ScheduleByDay?: ScheduleByDay;
     ScheduleByWeek?: ScheduleByWeek;
-    ScheduleByMonth?: ScheduleByMonth
+    ScheduleByMonth?: ScheduleByMonth;
+    ScheduleByMonthDayOfWeek?: ScheduleByMonthDayOfWeek
 }
 
 export type ScheduleTimeTrigger = {
