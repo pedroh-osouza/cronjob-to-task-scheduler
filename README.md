@@ -1,5 +1,6 @@
 # cronjob-to-task-scheduler
-Converte uma expressão CRON para um comando de agendamento de tarefa no windows
+
+Converte um agendamento cron para um agendamento windows
 
 # Possibilidades
 
