@@ -4,7 +4,7 @@ export type Week = {
 
 export type ScheduleByMonthDayOfWeek = {
   Weeks: {
-    Week: Week|Week[];
+    Week: Week[];
   };
   Months: {
     January?: {};
