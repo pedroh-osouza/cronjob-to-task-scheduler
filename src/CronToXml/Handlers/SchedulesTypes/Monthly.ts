@@ -7,26 +7,13 @@ export class Monthly
 {
     static getTrigger(cronData: CronData): Triggers
     {
-        if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.dayOfMonth(cronData);
-        if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteDayOfMonth(cronData)
-        if(cronData.minutes == '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.hourDayOfMonth(cronData)
-        if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteHourDayOfMonth(cronData)
-        if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.month(cronData)
-        if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.minuteMonth(cronData)
-        if(cronData.minutes == '*' && cronData.hours != '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.hourMonth(cronData)
-        if(cronData.minutes != '*' && cronData.hours != '*' && cronData.daysOfMonths == '*' && cronData.months != '*' && cronData.daysOfWeeks == '*') return this.minuteHourMonth(cronData)
+        if(cronData.minutes != '*' && cronData.hours != '*') return this.minuteHour(cronData);
+        if(cronData.minutes != '*' && cronData.hours == '*') return this.minute(cronData);
+        if(cronData.minutes == '*' && cronData.hours != '*') return this.hour(cronData);
 
-        return {
-
-        };
-    }
-
-
-    private static dayOfMonth(cronData: CronData): Triggers
-    {
         const now = moment();
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
-
+        const duration = (cronData.daysOfMonths != '*' && cronData.months == '*') ? 'P1D' : 'P30D';
         return {
             CalendarTrigger: {
                 Repetition: {
@@ -34,10 +21,10 @@ export class Monthly
                         _text: 'PT1M'
                     },
                     StopAtDurationEnd: {
-                        _text: false
+                        _text: true
                     },
                     Duration: {
-                        _text: 'P1D'
+                        _text: duration
                     }
                 },
                 Enabled: {
@@ -51,10 +38,12 @@ export class Monthly
         }
     }
 
-    private static minuteDayOfMonth(cronData: CronData): Triggers
+    private static minute(cronData: CronData): Triggers
     {
         const now = moment();
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
+
+        const duration = (cronData.daysOfMonths != '*' && cronData.months == '*') ? 'P1D' : 'P30D';
 
         if(!Array.isArray(cronData.minutes))
         {
@@ -70,7 +59,7 @@ export class Monthly
                             _text: false
                         },
                         Duration: {
-                            _text: 'P1D'
+                            _text: duration
                         }
                     },
                     Enabled: {
@@ -96,6 +85,9 @@ export class Monthly
                     StopAtDurationEnd: {
                         _text: false
                     },
+                    Duration: {
+                        _text: duration
+                    }
                 },
                 Enabled: {
                     _text: true
@@ -114,7 +106,7 @@ export class Monthly
         };
     }
 
-    private static hourDayOfMonth(cronData: CronData): Triggers
+    private static hour(cronData: CronData): Triggers
     {
         const now = moment();
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
@@ -179,7 +171,7 @@ export class Monthly
         };
     }
 
-    private static minuteHourDayOfMonth(cronData: CronData): Triggers
+    private static minuteHour(cronData: CronData): Triggers
     {
         const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
 
@@ -219,170 +211,5 @@ export class Monthly
         return {
             CalendarTrigger: calendarTriggers
         };
-    }
-
-    private static month(cronData: CronData): Triggers
-    {
-        const now = moment();
-        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
-
-        return {
-            CalendarTrigger: {
-                Repetition: {
-                    Interval: {
-                        _text: 'PT1M'
-                    },
-                    StopAtDurationEnd: {
-                        _text: true
-                    },
-                    Duration: {
-                        _text: 'P30D'
-                    }
-                },
-                Enabled: {
-                    _text: true
-                },
-                StartBoundary: {
-                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
-                },
-                ScheduleByMonth: scheduleByMonth
-            }
-        }
-    }
-
-    private static minuteMonth(cronData: CronData): Triggers
-    {
-        const now = moment();
-        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
-
-        if(!Array.isArray(cronData.minutes))
-        {
-            now.set({minute: Number(cronData.minutes), second: 0})
-
-            return {
-                CalendarTrigger: {
-                    Repetition: {
-                        Interval: {
-                            _text: 'PT1H'
-                        },
-                        StopAtDurationEnd: {
-                            _text: false
-                        },
-                        Duration: {
-                            _text: 'P30D'
-                        }
-                    },
-                    Enabled: {
-                        _text: true
-                    },
-                    StartBoundary: {
-                        _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
-                    },
-                    ScheduleByMonth: scheduleByMonth
-                }
-            }
-        }
-
-        let calendarTriggers: CalendarTrigger[] = [];
-        for(let i = 0; i < cronData.minutes.length; i++)
-        {
-            now.set({minute: Number(cronData.minutes[i]), second: 0})
-            const trigger: CalendarTrigger = {
-                Repetition: {
-                    Interval: {
-                        _text: 'PT1H'
-                    },
-                    StopAtDurationEnd: {
-                        _text: false
-                    },
-                    Duration: {
-                        _text: 'P30D'
-                    }
-                },
-                Enabled: {
-                    _text: true
-                },
-                StartBoundary: {
-                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
-                },
-                ScheduleByMonth: scheduleByMonth
-            }
-
-            calendarTriggers.push(trigger)
-        }
-        
-        return {
-            CalendarTrigger: calendarTriggers
-        };
-    }
-
-    private static hourMonth(cronData: CronData): Triggers
-    {
-        const now = moment();
-        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
-
-        if(!Array.isArray(cronData.hours))
-        {
-            now.set({hour: Number(cronData.hours), minute: 0, second: 0})
-            return {
-                CalendarTrigger: {
-                    Repetition: {
-                        Interval: {
-                            _text: 'PT1M'
-                        },
-                        Duration:{
-                            _text: 'PT1H'
-                        },
-                        StopAtDurationEnd: {
-                            _text: false
-                        },
-                    },
-                    Enabled: {
-                        _text: true
-                    },
-                    StartBoundary: {
-                        _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
-                    },
-                    ScheduleByMonth: scheduleByMonth
-                }
-            }
-        }
-
-        let calendarTriggers: CalendarTrigger[] = [];
-        for(let i = 0; i < cronData.hours.length; i++)
-        {
-            now.set({hour: Number(cronData.hours[i]), minute: 0, second: 0})
-            const trigger: CalendarTrigger = {
-                Repetition: {
-                    Interval: {
-                        _text: 'PT1M'
-                    },
-                    Duration:{
-                        _text: 'PT1H'
-                    },
-                    StopAtDurationEnd: {
-                        _text: false
-                    },
-                },
-                Enabled: {
-                    _text: true
-                },
-                StartBoundary: {
-                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
-                },
-                ScheduleByMonth: scheduleByMonth
-            }
-
-            calendarTriggers.push(trigger)
-        }
-        
-        return {
-            CalendarTrigger: calendarTriggers
-        };
-    }
-
-    private static minuteHourMonth(cronData: CronData): Triggers
-    {
-        
     }
 }
