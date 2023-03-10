@@ -1,11 +1,13 @@
 import { CronData } from "../../interfaces/CronData";
 import { CalendarTrigger, Day, ScheduleByMonth, Triggers } from "../../interfaces/ScheduleXmlObject";
 import moment from 'moment'
+import { DaysOfMonth } from "../DaysOfMonth";
 export class Monthly
 {
     static getTrigger(cronData: CronData): Triggers
     {
-        if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.dayOfMonth(cronData)
+        if(cronData.minutes == '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.dayOfMonth(cronData);
+        if(cronData.minutes != '*' && cronData.hours == '*' && cronData.daysOfMonths != '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return this.minuteDayOfMonth(cronData)
         return {
 
         };
@@ -14,36 +16,7 @@ export class Monthly
     private static dayOfMonth(cronData: CronData): Triggers
     {
         const now = moment();
-        let days: Day[] = [];
-
-        if(Array.isArray(cronData.daysOfMonths))
-        {
-            for (let i = 0; i < cronData.daysOfMonths.length; i++) {
-                const day: Day = {
-                    _text: Number(cronData.daysOfMonths[i])
-                }
-                days.push(day)
-            }
-        }
-
-        if(days.length === 0)
-        {
-            const day: Day = {
-                _text: Number(cronData.daysOfMonths)
-            }
-
-            days.push(day);
-        }
-        
-        const scheduleByMonth: ScheduleByMonth = {
-            DaysOfMonth: {
-                Day: days
-            },
-            Months: {
-                January:{},February:{},March:{},April:{},May:{},June:{},July:{},
-                August:{},September:{},October:{},November:{},December:{},
-            }
-        };
+        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
 
         return {
             CalendarTrigger: {
@@ -64,5 +37,65 @@ export class Monthly
                 ScheduleByMonth: scheduleByMonth
             }
         }
+    }
+
+    private static minuteDayOfMonth(cronData: CronData)
+    {
+        const now = moment();
+        const scheduleByMonth = DaysOfMonth.getScheduleMonth(cronData);
+
+        if(!Array.isArray(cronData.minutes))
+        {
+            now.set({minute: Number(cronData.minutes), second: 0})
+
+            return {
+                CalendarTrigger: {
+                    Repetition: {
+                        Interval: {
+                            _text: 'PT1H'
+                        },
+                        StopAtDurationEnd: {
+                            _text: false
+                        },
+                    },
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                    },
+                    ScheduleByMonth: scheduleByMonth
+                }
+            }
+        }
+
+        let calendarTriggers: CalendarTrigger[] = [];
+        for(let i = 0; i < cronData.minutes.length; i++)
+        {
+            now.set({minute: Number(cronData.minutes[i]), second: 0})
+            const trigger: CalendarTrigger = {
+                Repetition: {
+                    Interval: {
+                        _text: 'PT1H'
+                    },
+                    StopAtDurationEnd: {
+                        _text: false
+                    },
+                },
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                },
+                ScheduleByMonth: scheduleByMonth
+            }
+
+            calendarTriggers.push(trigger)
+        }
+        
+        return {
+            CalendarTrigger: calendarTriggers
+        };
     }
 }
