@@ -13,7 +13,7 @@ export type ScheduleByWeek = {
     Thursday?: {};
     Friday?: {};
     Saturday?: {};
-    WeeksInterval: {
+    WeeksInterval?: {
       _text: number & { min: 1, max: 52 }
     }
   }
