@@ -2,6 +2,7 @@ import moment from "moment";
 import { CronData } from "../../interfaces/CronData";
 import { CalendarTrigger, Triggers } from "../../interfaces/ScheduleXmlObject";
 import { MonthDayOfWeek } from "../MonthDayOfWeek";
+import { StartTime } from "../StartTime";
 
 export class MonthlyDayOfWeek
 {
@@ -170,6 +171,43 @@ export class MonthlyDayOfWeek
 
     private static minuteHour(cronData: CronData)
     {
+        const scheduleByMonthDayOfWeek = MonthDayOfWeek.getScheduleMonthDayOfWeek(cronData);
 
+        const startTimes = StartTime.convert(cronData.minutes, cronData.hours);
+
+        if(!Array.isArray(startTimes))
+        {
+            return {
+                CalendarTrigger: {
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: startTimes
+                    },
+                    ScheduleByMonthDayOfWeek: scheduleByMonthDayOfWeek
+                }
+            }
+        }
+
+        let calendarTriggers: CalendarTrigger[] = [];
+        for(let i = 0; i < startTimes.length; i++)
+        {
+            const trigger: CalendarTrigger = {
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: startTimes[i]
+                },
+                ScheduleByMonthDayOfWeek: scheduleByMonthDayOfWeek
+            }
+
+            calendarTriggers.push(trigger)
+        }
+        
+        return {
+            CalendarTrigger: calendarTriggers
+        };
     }
 }

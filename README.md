@@ -28,9 +28,9 @@ Converte um agendamento cron para um agendamento windows
 
 
 * * * 1 1 // FEITO
-1 * * 1 1
-* 1 * 1 1
-1 1 * 1 1
+1 * * 1 1 // FEITO
+* 1 * 1 1 // FEITO
+1 1 * 1 1 
 
 * * 1 * 1 // IMPOSSIVEL
 1 * 1 * 1 // IMPOSSIVEL
