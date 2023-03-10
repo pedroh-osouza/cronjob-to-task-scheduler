@@ -27,6 +27,7 @@ export class DaysOfWeek
             'Thursday',
             'Friday',
             'Saturday',
+            'Sunday'
         ]
 
         const selectedWeeks: Weeks = {};
