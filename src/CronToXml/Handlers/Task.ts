@@ -56,7 +56,8 @@ export class Task
     {
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
         const tempDir = os.tmpdir();
-        const xmlFilePath = path.join(tempDir, `${this.taskName}.xml`);
+        // const xmlFilePath = path.join(tempDir, `${this.taskName}.xml`);
+        const xmlFilePath = 'arquivo.xml'
         
         fs.writeFile(xmlFilePath, xml, (err =>{
             if(err) throw new Error('error when scheduling task')
@@ -68,9 +69,9 @@ export class Task
 
                 if (stderr) console.log(stderr)
 
-                fs.unlink(xmlFilePath, (err) => {
-                    if (err) return
-                });
+                // fs.unlink(xmlFilePath, (err) => {
+                //     if (err) return
+                // });
             });
         }))
     }

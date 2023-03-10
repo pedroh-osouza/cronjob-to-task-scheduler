@@ -42,8 +42,9 @@ export class Daily {
             calendarTriggers.push(trigger);
         };
         
+        console.log(calendarTriggers);
         return {
-            TimeTrigger: calendarTriggers
+            CalendarTrigger: calendarTriggers
         };
     }
 }
