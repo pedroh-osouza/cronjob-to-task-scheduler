@@ -1,3 +1,39 @@
+export type Week = {
+  _text: number
+}
+
+export type ScheduleByMonthDayOfWeek = {
+  Weeks: {
+    Week: Week|Week[];
+    DaysOfWeek: {
+      Sunday?: {};
+      Monday?: {};
+      Tuesday?: {};
+      Wednesday?: {};
+      Thursday?: {};
+      Friday?: {};
+      Saturday?: {};
+    };
+    Months: {
+      January?: {};
+      February?: {};
+      March?: {};
+      April?: {};
+      May?: {};
+      June?: {};
+      July?: {};
+      August?: {};
+      September?: {};
+      October?: {};
+      November?: {};
+      December?: {};
+    };
+    DaysOfMonth?: {
+      Day: Day | Day[]
+    }
+  }
+}
+
 export type ScheduleByDay = {
   DaysInterval: {
     _text: number
