@@ -105,7 +105,67 @@ export class Weekly
 
     private static hour(cronData: CronData)
     {
+        const now = moment();
+        const scheduleByWeek = DaysOfWeek.getScheduleWeek(cronData);
 
+        if(!Array.isArray(cronData.hours))
+        {
+            now.set({hour: Number(cronData.hours), minute: 0, second: 0})
+            return {
+                CalendarTrigger: {
+                    Repetition: {
+                        Interval: {
+                            _text: 'PT1M'
+                        },
+                        Duration:{
+                            _text: 'PT1H'
+                        },
+                        StopAtDurationEnd: {
+                            _text: false
+                        },
+                    },
+                    Enabled: {
+                        _text: true
+                    },
+                    StartBoundary: {
+                        _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                    },
+                    ScheduleByWeek: scheduleByWeek
+                }
+            }
+        }
+
+        let calendarTriggers: CalendarTrigger[] = [];
+        for(let i = 0; i < cronData.hours.length; i++)
+        {
+            now.set({hour: Number(cronData.hours[i]), minute: 0, second: 0})
+            const trigger: CalendarTrigger = {
+                Repetition: {
+                    Interval: {
+                        _text: 'PT1M'
+                    },
+                    Duration:{
+                        _text: 'PT1H'
+                    },
+                    StopAtDurationEnd: {
+                        _text: false
+                    },
+                },
+                Enabled: {
+                    _text: true
+                },
+                StartBoundary: {
+                    _text: now.format('YYYY-MM-DDTHH:mm:ssZ')
+                },
+                ScheduleByWeek: scheduleByWeek
+            }
+
+            calendarTriggers.push(trigger)
+        }
+        
+        return {
+            CalendarTrigger: calendarTriggers
+        };
     }
 
     private static minuteHour(cronData: CronData)
