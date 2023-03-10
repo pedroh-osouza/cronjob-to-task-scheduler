@@ -21,6 +21,7 @@ export class CronToXml
         {
             case 'time':
                 triggers = TimeTrigger.getTrigger(cronData);
+                break;
             case 'daily':
                 triggers = Daily.getTrigger(cronData);
                 break;
