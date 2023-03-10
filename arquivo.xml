@@ -3,7 +3,7 @@
     <Triggers>
         <CalendarTrigger>
             <Enabled>true</Enabled>
-            <StartBoundary>2023-03-10T10:00:00-04:00</StartBoundary>
+            <StartBoundary>2023-03-10T07:00:00-04:00</StartBoundary>
             <ScheduleByWeek>
                 <DaysOfWeek>
                     <Monday/>

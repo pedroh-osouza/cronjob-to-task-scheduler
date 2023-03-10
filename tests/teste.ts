@@ -1,3 +1,3 @@
-import { CronToXml } from "../src/CronToXml/FacadeCronToXml"
+import { CronToXml } from "../src/FacadeCronToXml"
 
-CronToXml.convert('meuXml', '* * 1 * 1', 'notepad.exe')
+CronToXml.convert('meuXml', '00 07 * * 1-5', 'notepad.exe')
