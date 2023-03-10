@@ -1,7 +1,7 @@
 import { Cron } from "./Handlers/Cron";
 import { Daily } from "./Handlers/SchedulesTypes/Daily";
 import { Monthly } from "./Handlers/SchedulesTypes/Monthly";
-import { selectScheduleType } from "./Handlers/SchedulesTypes/selectScheduleType";
+import { ScheduleType } from "./Handlers/SchedulesTypes/ScheduleType";
 import { TimeTrigger } from "./Handlers/SchedulesTypes/TimeTrigger";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 import { Task } from "./Handlers/Task";
@@ -14,8 +14,7 @@ export class CronToXml
         cron.validate(cronExpression);
 
         const cronData = cron.toData(cronExpression);
-        const scheduleType = selectScheduleType(cronData);
-        console.log(scheduleType);
+        const scheduleType = ScheduleType.selectScheduleType(cronData);
         let triggers;
         switch(scheduleType)
         {
