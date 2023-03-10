@@ -1,6 +1,7 @@
 import { Cron } from "./Handlers/Cron";
 import { Daily } from "./Handlers/SchedulesTypes/Daily";
 import { Monthly } from "./Handlers/SchedulesTypes/Monthly";
+import { MonthlyDayOfWeek } from "./Handlers/SchedulesTypes/MonthlyDayOfWeek";
 import { ScheduleType } from "./Handlers/SchedulesTypes/ScheduleType";
 import { TimeTrigger } from "./Handlers/SchedulesTypes/TimeTrigger";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
@@ -30,6 +31,9 @@ export class CronToXml
             case 'monthly':
                 triggers = Monthly.getTrigger(cronData);
                 break;
+            case 'monthlyDayOfWeek':
+                triggers = MonthlyDayOfWeek.getTrigger(cronData);
+                break
             default:
                 throw new Error('error on select scheduleType')
         }

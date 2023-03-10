@@ -2,7 +2,8 @@ import { CronData } from "../../interfaces/CronData";
 
 export class ScheduleType {
     static selectScheduleType(cronData: CronData) {
-        if (cronData.daysOfMonths != '*' || cronData.months != '*') return 'monthly';
+        if(cronData.daysOfWeeks != '*' && (cronData.daysOfMonths != '*' || cronData.months != '*')) return 'monthlyDayOfWeek'
+        if (cronData.daysOfMonths != '*' || cronData.months != '*' && cronData.daysOfWeeks == '*') return 'monthly';
         if (cronData.daysOfWeeks != '*' && cronData.daysOfMonths == '*' && cronData.months == '*') return 'weekly';
         if ((cronData.minutes != '*' || cronData.minutes == '*') && cronData.hours == '*' && cronData.daysOfMonths == '*' && cronData.months == '*' && cronData.daysOfWeeks == '*') return 'time'
         return 'daily'
