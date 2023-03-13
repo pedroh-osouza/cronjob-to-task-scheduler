@@ -1,45 +1,13 @@
 # cronjob-to-task-scheduler
 
-Converte um agendamento cron para um agendamento windows
+Converte um agendamento cron para um agendamento de tarefas windows
 
-# Possibilidades
-
-* * * * * // FEITO
-1 * * * * // FEITO
-* 1 * * * // FEITO
-1 1 * * * // FEITO
-* * 1 * * // FEITO
-1 * 1 * * // FEITO
-* 1 1 * * // FEITO
-1 1 1 * * // FEITO
-* * * 1 * // FEITO
-1 * * 1 * // FEITO
-* 1 * 1 * // FEITO
-1 1 * 1 * // FEITO
-* * 1 1 * // FEITO
-1 * 1 1 * // FEITO
-* 1 1 1 * // FEITO
-1 1 1 1 * // FEITO
-* * * * 1 // FEITO
-1 * * * 1 // FEITO
-* 1 * * 1 // FEITO
-1 1 * * 1 // FEITO
-* * * 1 1 // FEITO
-1 * * 1 1 // FEITO
-* 1 * 1 1 // FEITO
-1 1 * 1 1 // FEITO
-
-* * 1 * 1 // IMPOSSIVEL
-1 * 1 * 1 // IMPOSSIVEL
-* 1 1 * 1 // IMPOSSIVEL
-1 1 1 * 1 // IMPOSSIVEL
-* * 1 1 1 // IMPOSSIVEL
-1 * 1 1 1 // IMPOSSIVEL
-* 1 1 1 1 // IMPOSSIVEL
-1 1 1 1 1 // IMPOSSIVEL
+# Como Usar
 
 # Limitações
 
-Um agendamento deve ter no máximo 37 disparadores
-Não suporta dayOfMonth e DayOfWeek juntos
-Não implementado a regra da /
+  - Um agendamento deve ter no máximo 37 disparadores.
+
+  - Não suporta day (month) e day (week) juntos. Exemplo: (0 22 1 * 1-5).
+
+  - Não implementada a regra dos modificadores com /.
