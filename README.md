@@ -6,7 +6,8 @@
 
 To use the library, follow these steps:
 
-
+1. Install the package: `npm install cronjob-to-task-scheduler`
+2. TESTE
 
 # Limitations
 
