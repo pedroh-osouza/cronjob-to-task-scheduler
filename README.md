@@ -1,13 +1,17 @@
-# cronjob-to-task-scheduler
+# Cronjob-to-Task-Scheduler
 
-Converte um agendamento cron para um agendamento de tarefas windows
+`cronjob-to-task-scheduler` is a library that converts a cron schedule to a Windows task schedule.
 
-# Como Usar
+# How to Use
 
-# Limitações
+To use the library, follow these steps:
 
-  - Um agendamento deve ter no máximo 37 disparadores.
 
-  - Não suporta day (month) e day (week) juntos. Exemplo: (0 22 1 * 1-5).
 
-  - Não implementada a regra dos modificadores com /.
+# Limitations
+
+- A schedule must have a maximum of 37 triggers.
+
+- It does not support day (month) and day (week) together. For example: (0 22 1 * 1-5).
+
+- The rule for modifiers with / has not been implemented.
