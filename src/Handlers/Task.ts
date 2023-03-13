@@ -39,7 +39,10 @@ export class Task
                     },
                     Exec: {
                         Command: {
-                            _text: this.command
+                            _text: 'cmd.exe'
+                        },
+                        Arguments: {
+                            _text: `/c ${this.command}` 
                         }
                     }
                 }

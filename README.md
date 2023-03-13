@@ -12,9 +12,19 @@ npm install cronjob-to-task-scheduler
 
 ## 🔨 How to Usage
 
-To use the library, follow these steps:
+To use the library, follow the example:
 
-1. 
+```javascript
+
+import { CronToTaskSchedule } from "cronjob-to-task-scheduler";
+
+const taskName = 'MyTask';
+const cronExpression = '00 07 * * *';
+const taskTerminalCommand = 'notepad';
+
+CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand)
+
+```
 
 ## Limitations
 
