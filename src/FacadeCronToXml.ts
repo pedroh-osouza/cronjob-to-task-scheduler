@@ -7,7 +7,7 @@ import { TimeTrigger } from "./Handlers/SchedulesTypes/TimeTrigger";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 import { Task } from "./Handlers/Task";
 
-export class CronToXml
+export class CronToTaskSchedule
 {
     static convert(taskName: string, cronExpression: string, taskRun: string)
     {
