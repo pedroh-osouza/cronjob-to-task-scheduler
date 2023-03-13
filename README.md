@@ -2,14 +2,21 @@
 
 `cronjob-to-task-scheduler` is a library that converts a cron schedule to a Windows task schedule.
 
-# How to Use
+## 📦 Install
+
+```bash
+
+npm install cronjob-to-task-scheduler
+
+```
+
+## 🔨 How to Usage
 
 To use the library, follow these steps:
 
-1. Install the package: `npm install cronjob-to-task-scheduler`
-2. TESTE
+1. 
 
-# Limitations
+## Limitations
 
 - A schedule must have a maximum of 37 triggers.
 
