@@ -4,7 +4,6 @@
   "description": "Converte uma expressão CRON para um agendamento de tarefa no windows",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "type": "module",
   "module": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
