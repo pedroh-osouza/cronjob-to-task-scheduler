@@ -6,17 +6,18 @@ import { ScheduleType } from "./Handlers/SchedulesTypes/ScheduleType";
 import { TimeTrigger } from "./Handlers/SchedulesTypes/TimeTrigger";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 import { Task } from "./Handlers/Task";
+import { Triggers } from "./interfaces/ScheduleXmlObject";
 
 export class CronToTaskSchedule
 {
-    static convert(taskName: string, cronExpression: string, taskRun: string)
+    static convert(taskName: string, cronExpression: string, taskRun: string): boolean
     {
         const cron = new Cron();
         cron.validate(cronExpression);
 
         const cronData = cron.toData(cronExpression);
         const scheduleType = ScheduleType.selectScheduleType(cronData);
-        let triggers;
+        let triggers: Triggers;
         switch(scheduleType)
         {
             case 'time':
@@ -38,10 +39,8 @@ export class CronToTaskSchedule
                 throw new Error('error on select scheduleType')
         }
         
-        if(triggers)
-        {
-            const task = new Task(taskName, triggers, taskRun);
-            if(task.schedule()) console.log('tarefa agendada com sucesso')
-        }
+        const task = new Task(taskName, triggers, taskRun);
+
+        return task.schedule()
     }
 }

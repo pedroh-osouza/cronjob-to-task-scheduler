@@ -1,7 +1,7 @@
-import { ScheduleXmlObject, CalendarTrigger, Triggers } from "../interfaces/ScheduleXmlObject";
+import { ScheduleXmlObject, Triggers } from "../interfaces/ScheduleXmlObject";
 import { js2xml } from 'xml-js';
 import fs from 'fs';
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
 import os from 'os';
 import path from 'path';
 import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
@@ -12,15 +12,10 @@ export class Task
 
     schedule(): boolean
     {
-        try{
-            this.existsTask(this.taskName);
-            this.toSchedule(this.build());
-            return true;
-        } catch(error){
-            return false
-        } finally {
-            return false
-        }
+        if(this.existsTask(this.taskName)) return false
+        const scheduleXmlObject = this.build();
+        this.toSchedule(scheduleXmlObject);
+        return true;
     }
 
     private build(): ScheduleXmlObject
@@ -52,7 +47,7 @@ export class Task
         }
     }
 
-    private async toSchedule(scheduleXmlObject:ScheduleXmlObject)
+    private toSchedule(scheduleXmlObject:ScheduleXmlObject)
     {
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
         const tempDir = os.tmpdir();
@@ -64,10 +59,6 @@ export class Task
             const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`;
 
             exec(command, (error, stdout, stderr) => {
-                if (error) console.log(error)
-
-                if (stderr) console.log(stderr)
-
                 fs.unlink(xmlFilePath, (err) => {
                     if (err) return
                 });
@@ -75,10 +66,14 @@ export class Task
         }))
     }
 
-    private existsTask(taskName: string)
+    private existsTask(taskName: string): boolean
     {
-        exec(`schtasks /query /TN "${taskName}"`, (error, stdout, stderr) => {
-            if(!error) throw new DuplicatedTaskException(this.taskName);
-        });
+        try {
+            execSync(`schtasks /query /TN "${taskName}"`)
+        } catch (error) {
+            return false;
+        }
+
+        throw new DuplicatedTaskException(taskName);
     }
 }

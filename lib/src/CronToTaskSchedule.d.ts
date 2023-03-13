@@ -1,3 +1,3 @@
 export declare class CronToTaskSchedule {
-    static convert(cronSyntax: string, taskName: string, taskCommand: string): string | string[] | undefined;
+    static convert(taskName: string, cronExpression: string, taskRun: string): void;
 }

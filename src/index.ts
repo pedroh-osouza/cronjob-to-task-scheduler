@@ -1,1 +1,1 @@
-export * as CronToTaskSchedule from './FacadeCronToXml'
+export { CronToTaskSchedule } from './CronToTaskSchedule'
