@@ -152,6 +152,9 @@ export interface ScheduleXmlObject {
                 Command: {
                     _text: string;
                 };
+                Arguments: {
+                    _text: string;
+                };
             };
         };
     };
