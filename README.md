@@ -16,13 +16,13 @@ To use the library, follow the example:
 
 ```javascript
 
-import { CronToTaskSchedule } from "cronjob-to-task-scheduler";
+const { CronToTaskSchedule } = require("cronjob-to-task-scheduler");
 
 const taskName = 'MyTask';
-const cronExpression = '00 07 * * *';
+const cronExpression = '54 11 * * *';
 const taskTerminalCommand = 'notepad';
 
-CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand)
+CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);
 
 ```
 
