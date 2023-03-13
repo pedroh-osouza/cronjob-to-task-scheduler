@@ -1,6 +1,6 @@
 {
   "name": "cronjob-to-task-scheduler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Converte uma expressão CRON para um agendamento de tarefa no windows",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
@@ -11,7 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/pedroh-osouza/cronjob-to-task-scheduler.git"
   },
-  "keywords": ["cron", "task", "scheduler"],
+  "keywords": [
+    "cron",
+    "task",
+    "scheduler"
+  ],
   "author": "Pedro Henrique de Oliveira Souza",
   "license": "ISC",
   "bugs": {
