@@ -72,7 +72,7 @@ export class Task
     private existsTask(taskName: string): boolean
     {
         try {
-            execSync(`schtasks /query /TN "${taskName}"`)
+            execSync(`schtasks /query /TN "${taskName}"`, {stdio: 'ignore'})
         } catch (error) {
             return false;
         }
