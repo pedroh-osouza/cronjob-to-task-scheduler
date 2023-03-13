@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/pedroh-osouza/cronjob-to-task-scheduler.git"
   },
-  "keywords": [],
+  "keywords": ["cron", "task", "scheduler"],
   "author": "Pedro Henrique de Oliveira Souza",
   "license": "ISC",
   "bugs": {
