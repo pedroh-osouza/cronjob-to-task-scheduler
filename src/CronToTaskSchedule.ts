@@ -7,6 +7,7 @@ import { TimeTrigger } from "./Handlers/SchedulesTypes/TimeTrigger";
 import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 import { Task } from "./Handlers/Task";
 import { Triggers } from "./interfaces/ScheduleXmlObject";
+import { execSync } from 'child_process';
 
 export class CronToTaskSchedule
 {
@@ -42,5 +43,10 @@ export class CronToTaskSchedule
         const task = new Task(taskName, triggers, taskRun);
 
         return task.schedule()
+    }
+
+    static deleteTask(taskName: string)
+    {
+       return execSync(`schtasks /delete /tn "${taskName}"`);
     }
 }
