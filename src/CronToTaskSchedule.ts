@@ -47,6 +47,6 @@ export class CronToTaskSchedule
 
     static deleteTask(taskName: string)
     {
-       return execSync(`schtasks /delete /tn "${taskName}" /F`);
+       return execSync(`schtasks /delete /tn "${taskName}" /F`, {stdio: 'ignore'});
     }
 }
