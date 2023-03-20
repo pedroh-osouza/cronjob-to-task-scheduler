@@ -1,12 +1,10 @@
 import { ScheduleXmlObject, Triggers } from "../interfaces/ScheduleXmlObject";
 import { js2xml } from 'xml-js';
 import fs from 'fs';
-import { exec, execSync } from 'child_process';
+import { execSync } from 'child_process';
 import os from 'os';
 import path from 'path';
 import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
-import { XmlException } from "../Exceptions/XmlException";
-import { SchtasksCommandException } from "../Exceptions/SchtasksCommandException";
 
 export class Task
 {
@@ -56,21 +54,16 @@ export class Task
     {
         const xml = js2xml(scheduleXmlObject, {compact: true, spaces: 4})
         const tempDir = os.tmpdir();
-        const xmlFilePath = path.join(tempDir, `${this.taskName}.xml`);
+        const xmlFilePath = path.join(tempDir, `tempTask.xml`);
         
-        fs.writeFile(xmlFilePath, xml, (err =>{
-            if(err) throw new XmlException('error when creating task xml')
-
-            const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`;
-
-            exec(command, (error, stdout, stderr) => {
-                if(error) throw new SchtasksCommandException('error when running schedule command')
-
-                fs.unlink(xmlFilePath, (err) => {
-                    if (err) return
-                });
-            });
-        }))
+        try{
+            const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`
+            fs.writeFileSync(xmlFilePath, xml);
+            execSync(command, {stdio: 'ignore'});
+            fs.unlinkSync(xmlFilePath);
+        } catch(e) {
+            throw e;
+        }
     }
 
     private existsTask(taskName: string): boolean
