@@ -5,6 +5,8 @@ import { exec, execSync } from 'child_process';
 import os from 'os';
 import path from 'path';
 import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
+import { XmlException } from "../Exceptions/XmlException";
+import { SchtasksCommandException } from "../Exceptions/SchtasksCommandException";
 
 export class Task
 {
@@ -57,11 +59,13 @@ export class Task
         const xmlFilePath = path.join(tempDir, `${this.taskName}.xml`);
         
         fs.writeFile(xmlFilePath, xml, (err =>{
-            if(err) throw new Error('error when scheduling task')
+            if(err) throw new XmlException('error when creating task xml')
 
             const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`;
 
             exec(command, (error, stdout, stderr) => {
+                if(error) throw new SchtasksCommandException('error when running schedule command')
+
                 fs.unlink(xmlFilePath, (err) => {
                     if (err) return
                 });
