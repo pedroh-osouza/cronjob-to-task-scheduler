@@ -18,8 +18,22 @@ To use the library, follow the example:
 
 const { CronToTaskSchedule } = require("cronjob-to-task-scheduler");
 
-const taskName = 'MyTask';
-const cronExpression = '54 11 * * *';
+const taskName = 'openNotepad';
+const cronExpression = '00 12 * * *';
+const taskTerminalCommand = 'notepad';
+
+CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);
+
+```
+
+If you want to create a folder for your schedules just add a \
+
+```javascript
+
+const { CronToTaskSchedule } = require("cronjob-to-task-scheduler");
+
+const taskName = 'MyTasks\\openNotepad';
+const cronExpression = '00 12 * * *';
 const taskTerminalCommand = 'notepad';
 
 CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);

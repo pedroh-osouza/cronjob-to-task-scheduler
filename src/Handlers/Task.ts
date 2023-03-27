@@ -57,7 +57,7 @@ export class Task
         const xmlFilePath = path.join(tempDir, `tempTask.xml`);
         
         try{
-            const command = `schtasks /create /tn "${this.taskName}" /xml "${xmlFilePath}"`
+            const command = `schtasks /create /tn "${this.taskName}" /xml ${xmlFilePath}`
             fs.writeFileSync(xmlFilePath, xml);
             execSync(command, {stdio: 'ignore'});
             fs.unlinkSync(xmlFilePath);
