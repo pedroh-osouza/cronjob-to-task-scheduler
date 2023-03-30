@@ -157,5 +157,18 @@ export interface ScheduleXmlObject {
                 };
             };
         };
+        Settings: {
+            ExecutionTimeLimit: {
+                _text: string;
+            };
+            RestartOnFailure: {
+                Interval: {
+                    _text: string;
+                };
+                Count: {
+                    _text: number;
+                };
+            };
+        };
     };
 }
