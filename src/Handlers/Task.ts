@@ -45,6 +45,19 @@ export class Task
                             _text: `/c ${this.command}` 
                         }
                     }
+                },
+                Settings: {
+                    ExecutionTimeLimit: {
+                        _text: 'PT0S'
+                    },
+                    RestartOnFailure: {
+                        Interval: {
+                            _text: 'PT5M'
+                        },
+                        Count: {
+                            _text: 1
+                        }
+                    }
                 }
             }
         }
