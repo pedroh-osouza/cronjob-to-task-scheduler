@@ -40,6 +40,10 @@ CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);
 
 ```
 
+Result
+
+![Result](https://github.com/pedroh-osouza/cronjob-to-task-scheduler/blob/main/examples/myTasksOpenNotepad.PNG)
+
 ## Limitations
 
 - A schedule must have a maximum of 37 triggers.
