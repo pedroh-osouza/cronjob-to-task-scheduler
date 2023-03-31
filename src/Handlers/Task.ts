@@ -5,10 +5,11 @@ import { execSync } from 'child_process';
 import os from 'os';
 import path from 'path';
 import { DuplicatedTaskException } from "../Exceptions/DuplicatedTaskException";
+import { Exec } from "../interfaces/Exec";
 
 export class Task
 {
-    constructor(public taskName: string, public triggers: Triggers, public command: string){}
+    constructor(public taskName: string, public triggers: Triggers, public command: Exec){}
 
     schedule(): boolean
     {
@@ -39,10 +40,10 @@ export class Task
                     },
                     Exec: {
                         Command: {
-                            _text: 'cmd.exe'
+                            _text: this.command.command
                         },
                         Arguments: {
-                            _text: `/c ${this.command}` 
+                            _text: this.command.arguments || ''
                         }
                     }
                 },

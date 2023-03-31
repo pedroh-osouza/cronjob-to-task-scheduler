@@ -20,9 +20,12 @@ const { CronToTaskSchedule } = require("cronjob-to-task-scheduler");
 
 const taskName = 'openNotepad';
 const cronExpression = '00 12 * * *';
-const taskTerminalCommand = 'notepad';
+const action = {
+    command: 'notepad'
+    // you can pass execution arguments in arguments property 
+} 
 
-CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);
+CronToTaskSchedule.convert(taskName, cronExpression, action);
 
 ```
 
@@ -34,9 +37,12 @@ const { CronToTaskSchedule } = require("cronjob-to-task-scheduler");
 
 const taskName = 'MyTasks\\openNotepad';
 const cronExpression = '00 12 * * *';
-const taskTerminalCommand = 'notepad';
+const action = {
+    command: 'notepad'
+    // you can pass execution arguments in arguments property 
+} 
 
-CronToTaskSchedule.convert(taskName, cronExpression, taskTerminalCommand);
+CronToTaskSchedule.convert(taskName, cronExpression, action);
 
 ```
 

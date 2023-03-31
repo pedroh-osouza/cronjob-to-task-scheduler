@@ -8,10 +8,11 @@ import { Weekly } from "./Handlers/SchedulesTypes/Weekly";
 import { Task } from "./Handlers/Task";
 import { Triggers } from "./interfaces/ScheduleXmlObject";
 import { execSync } from 'child_process';
+import { Exec } from "./interfaces/Exec";
 
 export class CronToTaskSchedule
 {
-    static convert(taskName: string, cronExpression: string, taskRun: string): boolean
+    static convert(taskName: string, cronExpression: string, taskRun: Exec): boolean
     {
         const cron = new Cron();
         cron.validate(cronExpression);
