@@ -15,10 +15,9 @@ export class CronToTaskSchedule
     static convert(taskName: string, cronExpression: string, taskRun: Exec): boolean
     {
         const cron = new Cron();
-        cron.validate(cronExpression);
-
         const cronData = cron.toData(cronExpression);
         const scheduleType = ScheduleType.selectScheduleType(cronData);
+        console.log('scheduleType', scheduleType);
         let triggers: Triggers;
         switch(scheduleType)
         {
