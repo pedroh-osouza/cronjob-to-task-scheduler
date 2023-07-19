@@ -97,13 +97,6 @@ export class Cron {
             data.push(values);
         })
 
-        console.log({
-            minutes: data[0],
-            hours: data[1],
-            daysOfMonths: data[2],
-            months: data[3],
-            daysOfWeeks: data[4]
-        })
         return {
             minutes: data[0],
             hours: data[1],
