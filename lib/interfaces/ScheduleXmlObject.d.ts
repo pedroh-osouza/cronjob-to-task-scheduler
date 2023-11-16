@@ -155,6 +155,9 @@ export interface ScheduleXmlObject {
                 Arguments: {
                     _text: string;
                 };
+                WorkingDirectory?: {
+                    _text: string;
+                };
             };
         };
         Settings: {

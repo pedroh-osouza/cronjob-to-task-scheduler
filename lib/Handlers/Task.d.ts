@@ -4,7 +4,8 @@ export declare class Task {
     taskName: string;
     triggers: Triggers;
     command: Exec;
-    constructor(taskName: string, triggers: Triggers, command: Exec);
+    workingDirectory?: string | undefined;
+    constructor(taskName: string, triggers: Triggers, command: Exec, workingDirectory?: string | undefined);
     schedule(): boolean;
     private build;
     private toSchedule;
