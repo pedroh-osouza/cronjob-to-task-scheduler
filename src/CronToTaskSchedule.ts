@@ -12,7 +12,7 @@ import { Exec } from "./interfaces/Exec";
 
 export class CronToTaskSchedule
 {
-    static convert(taskName: string, cronExpression: string, taskRun: Exec): boolean
+    static convert(taskName: string, cronExpression: string, taskRun: Exec, workingDirectory?: string): boolean
     {
         const cron = new Cron();
         const cronData = cron.toData(cronExpression);
@@ -40,7 +40,7 @@ export class CronToTaskSchedule
                 throw new Error('error on select scheduleType')
         }
         
-        const task = new Task(taskName, triggers, taskRun);
+        const task = new Task(taskName, triggers, taskRun, workingDirectory);
 
         return task.schedule()
     }

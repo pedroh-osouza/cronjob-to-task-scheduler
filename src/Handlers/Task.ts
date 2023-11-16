@@ -9,7 +9,7 @@ import { Exec } from "../interfaces/Exec";
 
 export class Task
 {
-    constructor(public taskName: string, public triggers: Triggers, public command: Exec){}
+    constructor(public taskName: string, public triggers: Triggers, public command: Exec, public workingDirectory?: string){}
 
     schedule(): boolean
     {
@@ -44,6 +44,9 @@ export class Task
                         },
                         Arguments: {
                             _text: this.command.arguments || ''
+                        },
+                        WorkingDirectory: {
+                            _text: this.workingDirectory || ''
                         }
                     }
                 },
